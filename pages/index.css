@@ -1,0 +1,92 @@
+.page {
+  font-family: InterDisplay, Arial, Helvetica, sans-serif;
+  background: black;
+  color: white;
+}
+.page__section {
+  width: 100%;
+  max-width: 880px;
+  position: relative;
+  margin: 0 auto;
+}
+.page__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  margin-top: 45px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+}
+.profile__image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background-position: center;
+  margin-right: 24px;
+}
+.profile__title {
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  grid-area: title;
+  margin: 0;
+}
+.profile__description {
+  font-size: 18px;
+  line-height: 21.78px;
+  font-weight: 400;
+  grid-area: description;
+  margin: 0;
+}
+
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "title button"
+    "description description";
+  grid-template-columns: minmax(auto, 373px) auto;
+}
+.profile__edit-button {
+  background: transparent url("../images/EditButton.png") center no-repeat;
+  height: 24px;
+  width: 24px;
+  grid-area: button;
+}
+.profile__add-button {
+  background: transparent url("../images/AddButton.png") center no-repeat;
+  width: 150px;
+  height: 50px;
+  margin-left: auto;
+}
+.cards {
+  /*fonts*/
+}
+.card__list {
+  list-style-type: none;
+  display: grid;
+}
+.card {
+}
+.card__image {
+  max-width: 282px;
+  height: 282px;
+}
+.card__description {
+  display: flex;
+  background: white;
+  color: black;
+  padding: 25px 120px 25px 20px;
+}
+.card__like-button {
+  background-image: url("../images/like__button.png");
+  width: 21px;
+  height: 18px;
+  border-style: none;
+}
