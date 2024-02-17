@@ -46,6 +46,9 @@
   font-weight: 400;
   grid-area: description;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__info {
@@ -60,12 +63,14 @@
   height: 24px;
   width: 24px;
   grid-area: button;
+  padding: 0px;
 }
 .profile__add-button {
-  background: transparent url("../images/AddButton.svg") center no-repeat;
+  background: transparent url("../images/Add_Button.svg") center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
+  padding: 0px;
 }
 .cards {
   margin-top: 30px;
@@ -77,6 +82,7 @@
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-gap: 20px 17px;
+  padding: 0px;
 }
 .card {
   display: flex;
@@ -101,11 +107,22 @@
   font-weight: 900;
   line-height: 29.05px;
   margin: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__like-button {
-  background-image: url("../images/like__button.png");
+  background-image: url("../images/like__button.svg");
+  padding: 0px;
   width: 21px;
   height: 18px;
+  border: none;
+}
+.footer__image {
+  width: 318px;
+  height: 18px;
+  margin-top: 67px;
+  margin-bottom: 60px;
 }
 @media screen and (max-width: 320px) {
   .profile {
@@ -147,7 +164,7 @@
   .header {
     margin-bottom: 0;
     margin-top: 28px;
-    margin-left: 27px;
+
     max-width: 100%;
     height: 56px;
   }
@@ -155,8 +172,24 @@
   .header__title {
     width: 126px;
     height: 24px;
+    margin-left: 27px;
   }
   .profile__image {
     margin-right: 0px;
   }
+}
+
+.header__title:hover {
+  background: url("../images/AroundUS_Hover.svg");
+}
+
+.profile__add-button:hover {
+  background: url("../images/Add_Button_hover.svg");
+}
+
+.profile__edit-button:hover {
+  background: url("../images/Edit_Button_Hover.svg");
+}
+.card__like-button:hover {
+  background: url("../images/Heart_Hover.svg");
 }
