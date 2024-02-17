@@ -17,6 +17,8 @@
 
 .header {
   margin-top: 45px;
+  height: 74px;
+  border-bottom: 1px solid #545454;
 }
 
 .profile {
@@ -60,19 +62,27 @@
   grid-area: button;
 }
 .profile__add-button {
-  background: transparent url("../images/AddButton.png") center no-repeat;
+  background: transparent url("../images/AddButton.svg") center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
 }
 .cards {
-  /*fonts*/
+  margin-top: 30px;
 }
+
 .card__list {
   list-style-type: none;
   display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-gap: 20px 17px;
 }
 .card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
 }
 .card__image {
   max-width: 282px;
@@ -80,13 +90,73 @@
 }
 .card__description {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: white;
   color: black;
-  padding: 25px 120px 25px 20px;
+  padding: 25px 20px 25px 20px;
+}
+.card__title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  margin: 0px;
 }
 .card__like-button {
   background-image: url("../images/like__button.png");
   width: 21px;
   height: 18px;
-  border-style: none;
+}
+@media screen and (max-width: 320px) {
+  .profile {
+    flex-direction: column;
+    padding-top: 0px;
+    margin-top: 42px;
+    max-width: 282px;
+    height: 286px;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+  .profile__title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.63px;
+    margin-top: 30px;
+  }
+  .profile__description {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    margin-bottom: 36px;
+  }
+  .profile__add-button {
+    margin: 0px;
+    width: 100%;
+  }
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    align-self: center;
+  }
+  .header {
+    margin-bottom: 0;
+    margin-top: 28px;
+    margin-left: 27px;
+    max-width: 100%;
+    height: 56px;
+  }
+
+  .header__title {
+    width: 126px;
+    height: 24px;
+  }
+  .profile__image {
+    margin-right: 0px;
+  }
 }
