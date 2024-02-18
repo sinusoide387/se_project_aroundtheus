@@ -22,3 +22,4 @@
 #### Social
 
 - GitHub: Sinusoide387
+  ![Video explaining Project.] ("https://www.youtube.com/watch?v=QJ6-rTaLccs")
