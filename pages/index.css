@@ -1,58 +1,6 @@
+@import url("../vendor/normalize.css");
 @import url("../blocks/page.css");
 @import url("../blocks/profile.css");
 @import url("../blocks/cards.css");
 @import url("../blocks/footer.css");
-@media screen and (max-width: 480px) {
-  .profile {
-    flex-direction: column;
-    padding-top: 0px;
-    margin-top: 42px;
-    max-width: 282px;
-    height: 286px;
-  }
-  .profile__info {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-  }
-  .profile__title {
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 26.63px;
-    margin-top: 30px;
-  }
-  .profile__description {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16.94px;
-    margin-bottom: 36px;
-  }
-  .profile__add-button {
-    margin: 0px;
-    width: 100%;
-  }
-  .profile__edit-button {
-    width: 18px;
-    height: 18px;
-    align-self: center;
-  }
-  .header {
-    margin-bottom: 0;
-    margin-top: 28px;
-
-    max-width: 100%;
-    height: 56px;
-  }
-
-  .header__title {
-    width: 126px;
-    height: 24px;
-    margin-left: 27px;
-  }
-  .profile__image {
-    margin-right: 0px;
-  }
-}
+@import url("../blocks/card.css");
