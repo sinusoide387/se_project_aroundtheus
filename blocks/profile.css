@@ -80,12 +80,15 @@
     margin-top: 42px;
     max-width: 282px;
     min-height: 286px;
+    padding-left: 19px;
+    margin-right: 19px;
   }
   .profile__info {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+    gap: 14px;
   }
   .profile__title {
     font-size: 22px;
@@ -108,7 +111,7 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    align-self: center;
+    align-self: flex-end;
   }
   .profile__image {
     margin-right: 0px;
