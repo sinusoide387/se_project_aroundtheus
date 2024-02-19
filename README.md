@@ -21,5 +21,6 @@
 
 #### Social
 
-- GitHub: Sinusoide387
-  ![Video explaining Project.] ("https://www.youtube.com/watch?v=QJ6-rTaLccs")
+![github.] ("git@github.com:sinusoide387/se_project_aroundtheus.git")
+
+![Video explaining Project.] ("https://www.youtube.com/watch?v=QJ6-rTaLccs")
