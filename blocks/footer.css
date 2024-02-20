@@ -13,8 +13,10 @@
     justify-content: center;
   }
   .footer__text {
+    margin-bottom: 36px;
     margin-top: 48px;
     max-width: 282px;
     width: 100%;
+    font-size: 14px;
   }
 }

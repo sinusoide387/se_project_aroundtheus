@@ -77,12 +77,11 @@
 @media screen and (max-width: 320px) {
   .profile {
     flex-direction: column;
+
     padding-top: 0px;
     margin-top: 42px;
     max-width: 282px;
     min-height: 286px;
-    padding-left: 19px;
-    margin-right: 19px;
   }
   .profile__info {
     display: flex;
@@ -118,5 +117,14 @@
   }
   .profile__image {
     margin-right: 0px;
+  }
+}
+@media screen and (max-width: 775px) {
+  .profile {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .profile__add-button {
+    flex-wrap: wrap;
   }
 }

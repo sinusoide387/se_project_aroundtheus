@@ -9,3 +9,9 @@
   grid-gap: 20px 17px;
   padding: 0px;
 }
+
+@media screen and (max-width: 320px) {
+  .cards {
+    margin-top: 36px;
+  }
+}
