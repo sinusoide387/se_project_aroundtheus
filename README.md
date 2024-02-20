@@ -21,6 +21,6 @@
 
 #### Social
 
-![github.] ("git@github.com:sinusoide387/se_project_aroundtheus.git")
+![github.] ("https://github.com/sinusoide387/se_project_aroundtheus")
 
 ![Video explaining Project.] ("https://www.youtube.com/watch?v=QJ6-rTaLccs")
