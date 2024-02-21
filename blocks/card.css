@@ -36,7 +36,7 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .card {
     max-width: 282px;
     justify-content: center;

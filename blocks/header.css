@@ -1,9 +1,9 @@
 .header {
   margin-top: 45px;
   min-height: 74px;
-  border-bottom: 1px solid rgb(84 84 84 / 0.7);
+  border-bottom: 1px solid #545454;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .header {
     margin-bottom: 0;
     margin-top: 28px;
@@ -14,6 +14,7 @@
 
   .header__title {
     max-width: 126px;
+
     min-height: 24px;
     margin-left: 27px;
   }
