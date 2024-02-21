@@ -74,6 +74,16 @@
 .profile__edit-button:hover {
   opacity: 0.6;
 }
+@media screen and (max-width: 906px) {
+  .profile {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .profile__add-button {
+    flex-wrap: wrap;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .profile {
     flex-direction: column;
@@ -84,11 +94,8 @@
     min-height: 286px;
   }
   .profile__info {
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    gap: 14px;
     display: grid;
     grid-template-columns: minmax(auto, 196px) auto;
     gap: 14px 10px;
@@ -99,6 +106,7 @@
     margin-top: 30px;
   }
   .profile__description {
+    max-width: 282px;
     width: 100%;
     text-align: center;
     font-size: 14px;
@@ -117,14 +125,5 @@
   }
   .profile__image {
     margin-right: 0px;
-  }
-}
-@media screen and (max-width: 906px) {
-  .profile {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .profile__add-button {
-    flex-wrap: wrap;
   }
 }
