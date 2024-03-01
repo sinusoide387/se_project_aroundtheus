@@ -27,7 +27,11 @@
           <img src="./images/Avatar.png" alt="Avatar" class="profile__image" />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button
+              class="profile__edit-button"
+              id="profile__edit-button"
+              type="button"
+            ></button>
             <p class="profile__description">Explorer</p>
           </div>
           <button class="profile__add-button" type="button"></button>
@@ -103,9 +107,9 @@
     <footer class="footer page__section">
       <p class="footer__text">@ 2024 Around U.S.</p>
     </footer>
-    <div class="modal">
+    <div class="modal" id="profile__edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button class="modal__close" id="profile__close-modal"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
           <input class="modal__input-1" type="text" name="title" />

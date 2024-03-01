@@ -33,3 +33,23 @@ const initialCards = [
 ];
 
 console.log(initialCards);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+const ProfileEditButton = document.querySelector("#profile__edit-button");
+
+const ProfileEditModal = document.querySelector("#profile__edit-modal");
+
+ProfileEditButton.addEventListener("click", () => {
+  console.log("click");
+  ProfileEditModal.classList.add("modal__opened");
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+const PofileCloseButton = document.querySelector("#profile__close-modal");
+console.log(PofileCloseButton);
+
+PofileCloseButton.addEventListener("click", () => {
+  console.log("click");
+  ProfileEditModal.classList.remove("modal__opened");
+});

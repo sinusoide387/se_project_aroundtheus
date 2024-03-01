@@ -12,6 +12,7 @@
   align-items: center;
   display: none;
 }
+
 .modal__opened {
   display: flex;
 }
