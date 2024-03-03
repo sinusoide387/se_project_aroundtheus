@@ -53,6 +53,9 @@ const ProfileDescriptionInput = document.querySelector(
 
 const ProfileEditForm = ProfileEditModal.querySelector(".modal__form");
 
+const CardTemplate =
+  document.querySelector("#card-template").content.childNodes[0];
+
 //////////////////////////////////////Functions and EventListeners////////////////////////////////////////////////////////////
 
 ProfileEditButton.addEventListener("click", () => {
@@ -76,4 +79,14 @@ ProfileEditForm.addEventListener("submit", (e) => {
   ProfileTitle.textContent = ProfileTitleInput.value;
   ProfileDescription.textContent = ProfileDescriptionInput.value;
   ClosePopop();
+});
+
+initialCards.forEach((cardData) => {
+  const CardElement = CardTemplate.cloneNode(true);
+  console.log(CardElement);
+  // access the card title and image and store them in variables
+  // set the path to the image to the link field of the object
+  // set the image alt text to the name field of the object
+  // set the card title to the name field of the object, too
+  // return the ready HTML element with the filled-in data.
 });
