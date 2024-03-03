@@ -53,8 +53,11 @@ const ProfileDescriptionInput = document.querySelector(
 
 const ProfileEditForm = ProfileEditModal.querySelector(".modal__form");
 
-const CardTemplate =
-  document.querySelector("#card-template").content.childNodes[0];
+const CardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+
+const CardList = document.querySelector(".cards__list");
 
 //////////////////////////////////////Functions and EventListeners////////////////////////////////////////////////////////////
 
@@ -81,12 +84,28 @@ ProfileEditForm.addEventListener("submit", (e) => {
   ClosePopop();
 });
 
-initialCards.forEach((cardData) => {
+function getCardElement(cardData) {
+  // console.log(cardData.name);
   const CardElement = CardTemplate.cloneNode(true);
-  console.log(CardElement);
+
   // access the card title and image and store them in variables
+  const CardImage = CardElement.querySelector(".card__image");
+  const CardTitle = CardElement.querySelector(".card__title");
+
   // set the path to the image to the link field of the object
+  CardImage.setAttribute("src", cardData.link);
+
   // set the image alt text to the name field of the object
+  CardImage.setAttribute("alt", cardData.name);
+
   // set the card title to the name field of the object, too
+  CardTitle.textContent = cardData.name;
+
   // return the ready HTML element with the filled-in data.
+  return CardElement;
+}
+
+initialCards.forEach((cardData) => {
+  const CardElement = getCardElement(cardData);
+  CardList.append(CardElement);
 });
