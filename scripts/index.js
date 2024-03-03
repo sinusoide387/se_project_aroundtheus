@@ -34,22 +34,46 @@ const initialCards = [
 
 console.log(initialCards);
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////Elements/////////////////////////////////////////////////////////////
 const ProfileEditButton = document.querySelector("#profile__edit-button");
 
 const ProfileEditModal = document.querySelector("#profile__edit-modal");
 
+const PofileCloseButton = document.querySelector("#profile__close-modal");
+
+const ProfileTitle = document.querySelector("#profile__title");
+
+const ProfileTitleInput = document.querySelector("#profile__title-input");
+
+const ProfileDescription = document.querySelector("#profile__description");
+
+const ProfileDescriptionInput = document.querySelector(
+  "#profile__description-input"
+);
+
+const ProfileEditForm = ProfileEditModal.querySelector(".modal__form");
+
+//////////////////////////////////////Functions and EventListeners////////////////////////////////////////////////////////////
+
 ProfileEditButton.addEventListener("click", () => {
+  ProfileTitleInput.value = ProfileTitle.textContent.trim();
+  ProfileDescriptionInput.value = ProfileDescription.textContent.trim();
   console.log("click");
   ProfileEditModal.classList.add("modal__opened");
 });
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-const PofileCloseButton = document.querySelector("#profile__close-modal");
-console.log(PofileCloseButton);
+function ClosePopop() {
+  ProfileEditModal.classList.remove("modal__opened");
+}
 
 PofileCloseButton.addEventListener("click", () => {
   console.log("click");
-  ProfileEditModal.classList.remove("modal__opened");
+  ClosePopop();
+});
+
+ProfileEditForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  ProfileTitle.textContent = ProfileTitleInput.value;
+  ProfileDescription.textContent = ProfileDescriptionInput.value;
+  ClosePopop();
 });

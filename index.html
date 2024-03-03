@@ -26,13 +26,15 @@
         <section class="profile page__section">
           <img src="./images/Avatar.png" alt="Avatar" class="profile__image" />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title" id="profile__title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile__edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description" id="profile__description">
+              Explorer
+            </p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -112,8 +114,18 @@
         <button class="modal__close" id="profile__close-modal"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form">
-          <input class="modal__input-1" type="text" name="title" />
-          <input class="modal__input-2" type="text" name="description" />
+          <input
+            class="modal__input-1"
+            id="profile__title-input"
+            type="text"
+            name="title"
+          />
+          <input
+            class="modal__input-2"
+            id="profile__description-input"
+            type="text"
+            name="description"
+          />
           <button class="modal__button">Save</button>
         </form>
       </div>
