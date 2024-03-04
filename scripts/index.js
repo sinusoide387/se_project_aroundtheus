@@ -68,20 +68,20 @@ profileEditButton.addEventListener("click", () => {
   profileEditModal.classList.add("modal_opened");
 });
 
-function ClosePopup() {
+function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
 
 pofileCloseButton.addEventListener("click", () => {
   console.log("click");
-  ClosePopup();
+  closePopup();
 });
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  ClosePopup();
+  closePopup();
 });
 
 function getCardElement(cardData) {
