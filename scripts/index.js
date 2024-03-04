@@ -35,77 +35,77 @@ const initialCards = [
 console.log(initialCards);
 
 ///////////////////////////////////////Elements/////////////////////////////////////////////////////////////
-const ProfileEditButton = document.querySelector("#profile__edit-button");
+const profileEditButton = document.querySelector("#profile__edit-button");
 
-const ProfileEditModal = document.querySelector("#profile__edit-modal");
+const profileEditModal = document.querySelector("#profile__edit-modal");
 
-const PofileCloseButton = document.querySelector("#profile__close-modal");
+const pofileCloseButton = document.querySelector("#profile__close-modal");
 
-const ProfileTitle = document.querySelector("#profile__title");
+const profileTitle = document.querySelector("#profile__title");
 
-const ProfileTitleInput = document.querySelector("#profile__title-input");
+const profileTitleInput = document.querySelector("#profile__title-input");
 
-const ProfileDescription = document.querySelector("#profile__description");
+const profileDescription = document.querySelector("#profile__description");
 
-const ProfileDescriptionInput = document.querySelector(
+const profileDescriptionInput = document.querySelector(
   "#profile__description-input"
 );
 
-const ProfileEditForm = ProfileEditModal.querySelector(".modal__form");
+const profileEditForm = profileEditModal.querySelector(".modal__form");
 
-const CardTemplate = document
+const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
 
-const CardList = document.querySelector(".cards__list");
+const cardList = document.querySelector(".cards__list");
 
 //////////////////////////////////////Functions and EventListeners////////////////////////////////////////////////////////////
 
-ProfileEditButton.addEventListener("click", () => {
-  ProfileTitleInput.value = ProfileTitle.textContent.trim();
-  ProfileDescriptionInput.value = ProfileDescription.textContent.trim();
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileTitle.textContent.trim();
+  profileDescriptionInput.value = profileDescription.textContent.trim();
   console.log("click");
-  ProfileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
-function ClosePopop() {
-  ProfileEditModal.classList.remove("modal__opened");
+function ClosePopup() {
+  profileEditModal.classList.remove("modal_opened");
 }
 
-PofileCloseButton.addEventListener("click", () => {
+pofileCloseButton.addEventListener("click", () => {
   console.log("click");
-  ClosePopop();
+  ClosePopup();
 });
 
-ProfileEditForm.addEventListener("submit", (e) => {
+profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  ProfileTitle.textContent = ProfileTitleInput.value;
-  ProfileDescription.textContent = ProfileDescriptionInput.value;
-  ClosePopop();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  ClosePopup();
 });
 
 function getCardElement(cardData) {
   // console.log(cardData.name);
-  const CardElement = CardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
 
   // access the card title and image and store them in variables
-  const CardImage = CardElement.querySelector(".card__image");
-  const CardTitle = CardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
   // set the path to the image to the link field of the object
-  CardImage.setAttribute("src", cardData.link);
+  cardImage.setAttribute("src", cardData.link);
 
   // set the image alt text to the name field of the object
-  CardImage.setAttribute("alt", cardData.name);
+  cardImage.setAttribute("alt", cardData.name);
 
   // set the card title to the name field of the object, too
-  CardTitle.textContent = cardData.name;
+  cardTitle.textContent = cardData.name;
 
   // return the ready HTML element with the filled-in data.
-  return CardElement;
+  return cardElement;
 }
 
 initialCards.forEach((cardData) => {
-  const CardElement = getCardElement(cardData);
-  CardList.append(CardElement);
+  const cardElement = getCardElement(cardData);
+  cardList.append(cardElement);
 });

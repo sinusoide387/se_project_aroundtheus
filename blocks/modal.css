@@ -13,7 +13,7 @@
   display: none;
 }
 
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 .modal__container {
@@ -39,15 +39,15 @@
   margin-bottom: 0;
 }
 
-.modal__input-1 {
+/* .modal__input-1 {
   width: 100%;
   height: 27.34px;
   padding: 0;
   border: none;
   border-bottom: 1px solid;
   margin-top: 54px;
-}
-.modal__input-2 {
+} */
+.modal__input {
   width: 100%;
   height: 27.34px;
   padding: 0;
@@ -86,5 +86,15 @@
     right: 5px;
     width: 26px;
     height: 26px;
+  }
+  .modal__heading {
+    font-family: Inter, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  .modal__button {
+    font-family: Inter, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
   }
 }
