@@ -33,6 +33,11 @@
   border: none;
   cursor: pointer;
 }
+
+.card__like-button_active {
+  background: url("../images/heart_active.svg");
+}
+
 .card__like-button:hover {
   opacity: 0.5;
 }

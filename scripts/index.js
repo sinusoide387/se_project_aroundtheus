@@ -88,6 +88,12 @@ function getCardElement(cardData) {
   // access the card title and image and store them in variables
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+  // like_button
+  const likeButton = cardElement.querySelector(".card__like-button");
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
 
   // set the path to the image to the link field of the object
   cardImage.setAttribute("src", cardData.link);
@@ -153,4 +159,12 @@ profileEditForm.addEventListener("submit", (e) => {
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardList.append(cardElement);
+});
+
+//////////////////////////////////////like_elements/////////////////////////////////////////////////////
+
+profileLikeButton.forEach((likeButton) => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
 });
