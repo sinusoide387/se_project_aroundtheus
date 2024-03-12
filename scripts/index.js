@@ -106,6 +106,11 @@ function getCardElement(cardData) {
   });
 
   //// add a click-listener to the cardImage////
+  cardImage.addEventListener("click", () => {
+    const preViewImageModal = document.querySelector("#preview__image_modal");
+    modalImage = preViewImageModal.querySelector(".modal__image");
+    modalImage.classList.add("modal_opened");
+  });
   /// openModal with preViewImageModal
 
   // set the path to the image to the link field of the object
