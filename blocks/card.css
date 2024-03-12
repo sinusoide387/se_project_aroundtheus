@@ -7,6 +7,7 @@
 .card__image {
   max-width: 282px;
   height: 282px;
+  z-index: -1;
 }
 .card__description {
   display: flex;
@@ -41,6 +42,20 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
+
+.card__delete-button {
+  background: url("../images/delete__card-button.svg") transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  z-index: 0;
+  width: 18px;
+  height: 19.3px;
+  border: 1px solid transparent;
+}
+
 @media screen and (max-width: 600px) {
   .card {
     max-width: 282px;
