@@ -96,7 +96,8 @@ function getCardElement(cardData) {
   });
 
   //// find delete-button///////
-
+  const cardDeleteButton = cardTemplate.querySelector("#card__delete-button");
+  console.log(cardDeleteButton);
   ///// add event-listener to the delete-button/////
   /// cardElemen.remove()
 
