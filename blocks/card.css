@@ -3,6 +3,7 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: 10px;
+  position: relative;
 }
 .card__image {
   max-width: 282px;
