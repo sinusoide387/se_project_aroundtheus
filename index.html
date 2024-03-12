@@ -101,7 +101,7 @@
     </div>
     <template id="card-template">
       <li class="card">
-        <button class="card__delete-button" id="card__delete-button"></button>
+        <button class="card__delete-button" type="button"></button>
         <img src="" class="card__image" alt="" />
         <div class="card__description">
           <h2 class="card__title"></h2>
@@ -109,6 +109,18 @@
         </div>
       </li>
     </template>
+    <!-- image-modal -->
+    <div class="modal" id="modal__image">
+      <div class="modal__image_container">
+        <img
+          class="modal__image"
+          src="https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg"
+          alt=""
+        />
+        <h4 class="modal__image_description">asdadsad</h4>
+        <button class="modal__image-close-button" id=""></button>
+      </div>
+    </div>
     <script src="scripts/index.js"></script>
   </body>
 </html>

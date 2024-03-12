@@ -96,10 +96,14 @@ function getCardElement(cardData) {
   });
 
   //// find delete-button///////
-  const cardDeleteButton = cardTemplate.querySelector("#card__delete-button");
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   console.log(cardDeleteButton);
   ///// add event-listener to the delete-button/////
-  /// cardElemen.remove()
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+    console.log("click");
+    /// cardElemen.remove()
+  });
 
   //// add a click-listener to the cardImage////
   /// openModal with preViewImageModal
