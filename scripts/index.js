@@ -74,8 +74,18 @@ const profilePlaceInputUrl = document.querySelector(".modal__input-type_url");
 const profileCloseButtonPlace = document.querySelector(
   "#profile__close-modal-place"
 );
-
+//////////////////////////////// modal-image elements ///////////////////////////////////////////
 const preViewImageModal = document.querySelector("#preview__image_modal");
+
+const modalImageCloseButton = preViewImageModal.querySelector(
+  "#modal__image-close-button"
+);
+
+const modalImageSrc = preViewImageModal.querySelector("#modal__image");
+
+const modalImageDescription = preViewImageModal.querySelector(
+  "#modal__image_description"
+);
 //////////////////////////////////////Functions and EventListeners (add-modal)////////////////////////////////////////////////////////////
 
 function renderCard(cardData) {
@@ -108,10 +118,12 @@ function getCardElement(cardData) {
   });
 
   //// add a click-listener to the cardImage////
+  /// openModal with preViewImageModal
   cardImage.addEventListener("click", () => {
+    modalImageSrc.setAttribute("src", cardData.link);
+    modalImageDescription.textContent = cardData.name;
     preViewImageModal.classList.add("modal_opened");
   });
-  /// openModal with preViewImageModal
 
   // set the path to the image to the link field of the object
   cardImage.setAttribute("src", cardData.link);
@@ -160,7 +172,12 @@ profileEditButton.addEventListener("click", () => {
 function closePopup() {
   profileEditModal.classList.remove("modal_opened");
   profileAddModal.classList.remove("modal_opened");
+  preViewImageModal.classList.remove("modal_opened");
 }
+
+modalImageCloseButton.addEventListener("click", () => {
+  closePopup();
+});
 
 pofileCloseButton.addEventListener("click", () => {
   console.log("click");
