@@ -8,7 +8,6 @@
 .card__image {
   max-width: 282px;
   height: 282px;
-  z-index: -1;
 }
 .card__description {
   display: flex;

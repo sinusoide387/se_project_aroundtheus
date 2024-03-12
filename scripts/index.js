@@ -35,6 +35,7 @@ const initialCards = [
 console.log(initialCards);
 
 ///////////////////////////////////////Profile_edit_elements/////////////////////////////////////////////////////////////
+
 const profileEditButton = document.querySelector("#profile__edit-button");
 
 const profileEditModal = document.querySelector("#profile__edit-modal");
@@ -74,6 +75,7 @@ const profileCloseButtonPlace = document.querySelector(
   "#profile__close-modal-place"
 );
 
+const preViewImageModal = document.querySelector("#preview__image_modal");
 //////////////////////////////////////Functions and EventListeners (add-modal)////////////////////////////////////////////////////////////
 
 function renderCard(cardData) {
@@ -107,9 +109,7 @@ function getCardElement(cardData) {
 
   //// add a click-listener to the cardImage////
   cardImage.addEventListener("click", () => {
-    const preViewImageModal = document.querySelector("#preview__image_modal");
-    modalImage = preViewImageModal.querySelector(".modal__image");
-    modalImage.classList.add("modal_opened");
+    preViewImageModal.classList.add("modal_opened");
   });
   /// openModal with preViewImageModal
 
