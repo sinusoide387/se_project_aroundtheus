@@ -86,7 +86,7 @@ const modalImageSrc = preViewImageModal.querySelector("#modal__image");
 const modalImageDescription = preViewImageModal.querySelector(
   "#modal__image_description"
 );
-//////////////////////////////////////Functions and EventListeners (add-modal)////////////////////////////////////////////////////////////
+//////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
