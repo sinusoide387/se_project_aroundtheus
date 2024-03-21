@@ -1,19 +1,27 @@
 function showInputError(formEl, inputEl, options) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
-  console.log(`#${inputEl.id}-error`);
+  inputEl.classList.add(options.inputErrorClass);
+  errorMessageEl.textContent = inputEl.validationMessage;
+  errorMessageEl.classList.add(options.errorClass);
+}
+
+function hideInputError(formEl, inputEl, options) {
+  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+  inputEl.classList.remove(options.inputErrorClass);
+  errorMessageEl.textContent = inputEl.validationMessage;
+  errorMessageEl.classList.remove(options.errorClass);
 }
 
 function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, options);
+  } else {
+    hideInputError(formEl, inputEl, options);
   }
-  // else {
-  //   hideInputError(formEl, inputEl, options);
-  // }
 }
 
 function setEventListeners(formEl, options) {
-  const { inputSelector } = options;
+  const { inputSelector } = options; //genero una constante que se llama inputSelector. y la uso abajo para obtener los inputs.
   const inputEls = [...formEl.querySelectorAll(inputSelector)]; // los "..." se llaman spray operator, es igual que Array.from
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
@@ -49,7 +57,7 @@ const config = {
   inputSelector: ".modal__input", // ".popup__input",
   submitButtonSelector: ".modal__button", //".popup__button",
   inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
+  inputErrorClass: "popup__input_type_error", //"popup__error"//"popup__input_type_error",
   errorClass: "popup__error_visible",
 };
 
