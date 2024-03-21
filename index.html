@@ -99,18 +99,23 @@
             placeholder="title"
             type="text"
             name="title"
+            minlength="1"
+            maxlength="30"
             required
           />
-          <span id="profile__title-input-error"></span>
+          <span id="profile__title-input-error" class="popup__error"></span>
           <input
             class="modal__input modal__input-type_url"
             id="profile__description-input"
             placeholder="image URL"
-            type="text"
+            type="url"
             name="url"
             required
           />
-          <span id="profile__description-input-error"></span>
+          <span
+            id="profile__description-input-error"
+            class="popup__error"
+          ></span>
           <button class="modal__button">Save</button>
         </form>
       </div>

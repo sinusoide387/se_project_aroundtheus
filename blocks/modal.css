@@ -119,11 +119,15 @@
 .popup__input_type_error {
   border-bottom: #ff0000 1px solid;
 }
-.popup__error {
+.popup__error_visible {
   color: #ff0000;
   font-family: inter, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 12px;
+}
+.popup__button_disabled {
+  background-color: #ffffff;
+  background: #ffffff;
 }
 
 @media screen and (max-width: 600px) {

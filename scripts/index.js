@@ -32,8 +32,6 @@ const initialCards = [
   cardData6,
 ];
 
-console.log(initialCards);
-
 ///////////////////////////////////////Profile_edit_elements/////////////////////////////////////////////////////////////
 
 const profileEditButton = document.querySelector("#profile__edit-button");
@@ -117,11 +115,11 @@ function getCardElement(cardData) {
 
   //// find delete-button///////
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  console.log(cardDeleteButton);
+
   ///// add event-listener to the delete-button/////
   cardDeleteButton.addEventListener("click", () => {
     cardElement.remove();
-    console.log("click");
+
     /// cardElemen.remove()
   });
 
@@ -154,7 +152,6 @@ addNewCardButton.addEventListener("click", () => {
 });
 
 profileCloseButtonPlace.addEventListener("click", () => {
-  console.log("click");
   closePopup(profileAddModal);
 });
 
@@ -172,7 +169,7 @@ profileAddForm.addEventListener("submit", (e) => {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent.trim();
   profileDescriptionInput.value = profileDescription.textContent.trim();
-  console.log("click");
+
   // profileEditModal.classList.add("modal_opened");
   openPopup(profileEditModal);
 });
@@ -182,7 +179,6 @@ modalImageCloseButton.addEventListener("click", () => {
 });
 
 pofileCloseButton.addEventListener("click", () => {
-  console.log("click");
   closePopup(profileEditModal);
 });
 
