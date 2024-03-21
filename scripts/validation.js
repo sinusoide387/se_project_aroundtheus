@@ -1,11 +1,30 @@
+function showInputError(formEl, inputEl, options) {
+  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+  console.log(`#${inputEl.id}-error`);
+}
+
+function checkInputValidity(formEl, inputEl, options) {
+  if (!inputEl.validity.valid) {
+    showInputError(formEl, inputEl, options);
+  }
+  // else {
+  //   hideInputError(formEl, inputEl, options);
+  // }
+}
+
 function setEventListeners(formEl, options) {
   const { inputSelector } = options;
-  const inputEls = [...document.querySelectorAll(inputSelector)]; // los "..." se llaman spray operator, es igual que Array.from
-  console.log(inputEls);
+  const inputEls = [...formEl.querySelectorAll(inputSelector)]; // los "..." se llaman spray operator, es igual que Array.from
+  inputEls.forEach((inputEl) => {
+    inputEl.addEventListener("input", (e) => {
+      checkInputValidity(formEl, inputEl, options);
+    });
+  });
 }
 
 function enableValidation(options) {
-  const formEls = Array.from(document.querySelectorAll(options.formSelector));
+  const formEls = [...document.querySelectorAll(options.formSelector)];
+
   formEls.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => {
       e.preventDefault();

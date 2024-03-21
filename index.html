@@ -62,13 +62,25 @@
             id="profile__title-input"
             type="text"
             name="title"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="popup__error" id="profile__title-input-error"></span>
+
           <input
             class="modal__input"
             id="profile__description-input"
             type="text"
             name="description"
+            minlength="2"
+            maxlength="200"
+            required
           />
+          <span
+            class="popup__error"
+            id="profile__description-input-error"
+          ></span>
           <button class="modal__button">Save</button>
         </form>
       </div>
@@ -87,14 +99,18 @@
             placeholder="title"
             type="text"
             name="title"
+            required
           />
+          <span id="profile__title-input-error"></span>
           <input
             class="modal__input modal__input-type_url"
             id="profile__description-input"
             placeholder="image URL"
             type="text"
             name="url"
+            required
           />
+          <span id="profile__description-input-error"></span>
           <button class="modal__button">Save</button>
         </form>
       </div>
