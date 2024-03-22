@@ -193,3 +193,23 @@ initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardList.append(cardElement);
 });
+
+///////////////////////////////////////////////////////////////////////
+
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("modal")) {
+    closePopup(profileEditModal);
+    closePopup(profileAddModal);
+    closePopup(preViewImageModal);
+  }
+});
+
+function eventHandler(evt) {
+  if (evt.key === "Escape") {
+    closePopup(profileEditModal);
+    closePopup(profileAddModal);
+    closePopup(preViewImageModal);
+  }
+}
+
+document.addEventListener("keydown", eventHandler);
