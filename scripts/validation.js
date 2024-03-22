@@ -39,8 +39,8 @@ function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
 function setEventListeners(formEl, options) {
   const { inputSelector } = options; //genero una constante que se llama inputSelector. y la uso abajo para obtener los inputs.
   const inputEls = [...formEl.querySelectorAll(inputSelector)]; // los "..." se llaman spray operator, es igual que Array.from
-  const submitButton = formEl.querySelector(".modal__button");
-
+  const submitButton = formEl.querySelector(options.submitButtonSelector);
+  ///// i called toggleButtonState() here with the parameters inside parentesis but didnt work////
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);

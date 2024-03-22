@@ -194,22 +194,30 @@ initialCards.forEach((cardData) => {
   cardList.append(cardElement);
 });
 
-///////////////////////////////////////////////////////////////////////
+//////////////////////////////////eventListeners for modal and images /////////////////////////////////////
 
-document.addEventListener("click", (event) => {
-  if (event.target.classList.contains("modal")) {
-    closePopup(profileEditModal);
-    closePopup(profileAddModal);
-    closePopup(preViewImageModal);
-  }
+const popups = document.querySelectorAll(".modal"); ////// recordatorio: Usar las mismas clases para popups
+///// remainder : Use the same classes for popups
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("modal__close")) {
+      closePopup(popup);
+    }
+  });
 });
 
 function eventHandler(evt) {
   if (evt.key === "Escape") {
-    closePopup(profileEditModal);
-    closePopup(profileAddModal);
-    closePopup(preViewImageModal);
+    const openedPopup = document.querySelector(".modal_opened");
+    closePopup(openedPopup);
   }
 }
 
-document.addEventListener("keydown", eventHandler);
+document.addEventListener("keydown", eventHandler); //// it didnt work when i apply the eventlistener to the const popups
+{
+  document.removeEventListener(eventHandler);
+}
