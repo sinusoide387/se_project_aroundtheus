@@ -212,12 +212,10 @@ popups.forEach((popup) => {
 
 function eventHandler(evt) {
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
+    let openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
   }
 }
 
-document.addEventListener("keydown", eventHandler); //// it didnt work when i apply the eventlistener to the const popups
-{
-  document.removeEventListener(eventHandler);
-}
+document.addEventListener("keydown", eventHandler);
+document.removeEventListener(" ", eventHandler);
