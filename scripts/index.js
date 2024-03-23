@@ -88,10 +88,12 @@ const modalImageDescription = preViewImageModal.querySelector(
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", eventHandler);
 }
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
+  document.removeEventListener("keydown ", eventHandler);
 }
 
 function renderCard(cardData) {
@@ -208,7 +210,6 @@ function eventHandler(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
-    document.removeEventListener("keydown ", eventHandler);
   }
 }
 
