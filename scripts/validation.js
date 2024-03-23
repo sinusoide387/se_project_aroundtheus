@@ -71,7 +71,7 @@ function enableValidation(options) {
     ////////reset erro Messages.
   });
 }
-
+//// can i have a clarification on this correction, i created a block out of those three popup classes for style my validation as i though you refer
 const config = {
   formSelector: ".modal__form", //".popup__form"
   inputSelector: ".modal__input", // ".popup__input",

@@ -93,7 +93,7 @@ function openPopup(popup) {
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
-  document.removeEventListener("keydown ", eventHandler);
+  document.removeEventListener("keydown", eventHandler);
 }
 
 function renderCard(cardData) {
