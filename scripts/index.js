@@ -88,12 +88,12 @@ const modalImageDescription = preViewImageModal.querySelector(
 // I am not seeing the error you mentioned in review. PLEASE provide repro steps.
 function openPopup(popup) {
   popup.classList.add("modal_opened");
-  document.addEventListener("keydown", eventHandler);
+  document.addEventListener("keydown", handleEscape);
 } ///I am not seeing the error you mentioned in review. PLEASE provide repro steps.
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
-  document.removeEventListener("keydown", eventHandler);
+  document.removeEventListener("keydown", handleEscape);
 }
 
 function renderCard(cardData) {
@@ -170,14 +170,6 @@ profileEditButton.addEventListener("click", () => {
   openPopup(profileEditModal);
 });
 
-modalImageCloseButton.addEventListener("click", () => {
-  closePopup(preViewImageModal);
-});
-
-pofileCloseButton.addEventListener("click", () => {
-  closePopup(profileEditModal);
-});
-
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -206,7 +198,7 @@ popups.forEach((popup) => {
   });
 });
 
-function eventHandler(evt) {
+function handleEscape(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
