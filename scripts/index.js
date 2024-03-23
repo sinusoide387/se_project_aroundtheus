@@ -212,7 +212,7 @@ popups.forEach((popup) => {
 
 function eventHandler(evt) {
   if (evt.key === "Escape") {
-    let openedPopup = document.querySelector(".modal_opened");
+    const openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
   }
 }
