@@ -212,5 +212,3 @@ function eventHandler(evt) {
     closePopup(openedPopup);
   }
 }
-
-document.addEventListener("keydown", eventHandler);
