@@ -147,12 +147,7 @@ function getCardElement(cardData) {
 }
 
 addNewCardButton.addEventListener("click", () => {
-  // profileAddModal.classList.add("modal_opened");
   openPopup(profileAddModal);
-});
-
-profileCloseButtonPlace.addEventListener("click", () => {
-  closePopup(profileAddModal);
 });
 
 profileAddForm.addEventListener("submit", (e) => {
@@ -170,7 +165,6 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent.trim();
   profileDescriptionInput.value = profileDescription.textContent.trim();
 
-  // profileEditModal.classList.add("modal_opened");
   openPopup(profileEditModal);
 });
 
@@ -214,8 +208,8 @@ function eventHandler(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal_opened");
     closePopup(openedPopup);
+    document.removeEventListener("keydown ", eventHandler);
   }
 }
 
 document.addEventListener("keydown", eventHandler);
-document.removeEventListener(" ", eventHandler);

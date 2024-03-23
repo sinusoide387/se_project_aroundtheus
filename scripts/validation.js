@@ -40,7 +40,8 @@ function setEventListeners(formEl, options) {
   const { inputSelector } = options; //genero una constante que se llama inputSelector. y la uso abajo para obtener los inputs.
   const inputEls = [...formEl.querySelectorAll(inputSelector)]; // los "..." se llaman spray operator, es igual que Array.from
   const submitButton = formEl.querySelector(options.submitButtonSelector);
-  ///// i called toggleButtonState() here with the parameters inside parentesis but didnt work////
+  toggleButtonState(inputEls, submitButton, options); //// de esta forma el boton no esta activado desde que se abre el popup
+
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
