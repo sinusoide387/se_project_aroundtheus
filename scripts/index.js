@@ -85,11 +85,11 @@ const modalImageDescription = preViewImageModal.querySelector(
   "#modal__image_description"
 );
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
-
+// I am not seeing the error you mentioned in review. PLEASE provide repro steps.
 function openPopup(popup) {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", eventHandler);
-}
+} ///I am not seeing the error you mentioned in review. PLEASE provide repro steps.
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");

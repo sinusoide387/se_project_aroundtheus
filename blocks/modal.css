@@ -116,6 +116,20 @@
   font-weight: 400;
   max-width: 75vw;
 }
+.modal__input_type_error {
+  border-bottom: #ff0000 1px solid;
+}
+.modal__error_visible {
+  color: #ff0000;
+  font-family: inter, Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+}
+.modal__button_disabled {
+  color: #000;
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid #000;
+}
 
 @media screen and (max-width: 600px) {
   .modal__close {
