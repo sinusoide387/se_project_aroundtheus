@@ -1,3 +1,5 @@
+import { Card } from "./Cards.js";
+
 const cardData1 = {
   name: "Yosemite Valley",
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -206,11 +208,9 @@ function handleEscape(evt) {
 }
 
 ////////////// sprint 7 classes////////////////////////////////
-import Card from "./Cards";
 
-const cardData = initialCards.map((card) => {
+const cardInstances = initialCards.forEach((cardData) => {
+  //// intinera entre todos los datos y los manda a Card class
+  const card = new Card(cardData.name, cardData.link); /// recordar de importar la Card class arriba de todo
   return card;
 });
-console.log(cardData);
-
-const card = new Card(cardData);
