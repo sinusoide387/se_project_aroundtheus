@@ -204,3 +204,13 @@ function handleEscape(evt) {
     closePopup(openedPopup);
   }
 }
+
+////////////// sprint 7 classes////////////////////////////////
+import Card from "./Cards";
+
+const cardData = initialCards.map((card) => {
+  return card;
+});
+console.log(cardData);
+
+const card = new Card(cardData);
