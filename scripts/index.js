@@ -209,8 +209,8 @@ function handleEscape(evt) {
 
 ////////////// sprint 7 classes////////////////////////////////
 
-initialCards.forEach((cardData, cardTemplate) => {
+initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
-  const card = new Card(cardData.name, cardData.link, cardTemplate);
+  const card = new Card(cardData.name, cardData.link, "#card-template");
   const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
 });
