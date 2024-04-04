@@ -111,21 +111,19 @@ function getCardElement(cardData) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   // like_button
-  const likeButton = cardElement.querySelector(".card__like-button");
+  // const likeButton = cardElement.querySelector(".card__like-button");
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  // likeButton.addEventListener("click", () => {
+  //   likeButton.classList.toggle("card__like-button_active");
+  // });
 
   //// find delete-button///////
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
 
-  ///// add event-listener to the delete-button/////
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-
-    /// cardElemen.remove()
-  });
+  /// add event-listener to the delete-button/////
+  // cardDeleteButton.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   //// add a click-listener to the cardImage////
   /// openModal with preViewImageModal
@@ -212,5 +210,5 @@ function handleEscape(evt) {
 initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
   const card = new Card(cardData.name, cardData.link, "#card-template");
-  const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
+  card.getview(); /// recordar de importar la Card class arriba de todo
 });
