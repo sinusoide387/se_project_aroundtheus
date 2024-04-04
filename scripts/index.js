@@ -211,10 +211,21 @@ initialCards.forEach((cardData) => {
   const card = new Card(
     cardData.name,
     cardData.link,
-    "#card-template"
-    // handleImageClick()
+    "#card-template",
+    handleImageClick
   );
 
   const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
   cardList.append(cardElement);
 });
+function handleImageClick() {
+  this._cardElement
+    .querySelector("#modal__image")
+    .setAttribute(("src", this._link));
+  this._cardElement
+    .querySelector("#modal__image")
+    .setAttribute(("alt", this._link));
+  this._cardElement.querySelector("#modal__image_description").textContent =
+    this._name;
+  openPopup(preViewImageModal);
+}
