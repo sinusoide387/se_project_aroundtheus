@@ -1,14 +1,20 @@
 export class Card {
-  constructor(name, link, cardSelector) {
+  constructor(name, link, cardSelector, handleImageClick) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
 
     // // console.log(
     // //   `Card Name: ${this._name}, Card Link: ${this._link} selector : ${this._cardSelector}`
     // );
   }
   _setEventListeners() {
+    this._cardElement
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleImageClick(this);
+      });
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {

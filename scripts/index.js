@@ -108,7 +108,7 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
   // access the card title and image and store them in variables
-  // const cardImage = cardElement.querySelector(".card__image");
+  const cardImage = cardElement.querySelector(".card__image");
   // const cardTitle = cardElement.querySelector(".card__title");
   // like_button
   // const likeButton = cardElement.querySelector(".card__like-button");
@@ -208,7 +208,12 @@ function handleEscape(evt) {
 ////////////// sprint 7 classes////////////////////////////////
 initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
-  const card = new Card(cardData.name, cardData.link, "#card-template");
+  const card = new Card(
+    cardData.name,
+    cardData.link,
+    "#card-template"
+    // handleImageClick()
+  );
 
   const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
   cardList.append(cardElement);
