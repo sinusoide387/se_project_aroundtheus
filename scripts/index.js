@@ -1,4 +1,4 @@
-import { Card } from "./Cards.js";
+import { Card } from "./Card.js";
 
 const cardData1 = {
   name: "Yosemite Valley",
@@ -56,7 +56,8 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 
 const cardTemplate = document
   .querySelector("#card-template")
-  .content.querySelector(".card");
+  .content.querySelector(".card")
+  .cloneNode(true);
 
 const cardList = document.querySelector(".cards__list");
 //////////////////////Add_card_profile_elements/////////////////////////////////////////////////
@@ -103,51 +104,6 @@ function renderCard(cardData) {
   cardList.prepend(cardElement);
 }
 
-function getCardElement(cardData) {
-  // console.log(cardData.name);
-  const cardElement = cardTemplate.cloneNode(true);
-
-  // access the card title and image and store them in variables
-  const cardImage = cardElement.querySelector(".card__image");
-  // const cardTitle = cardElement.querySelector(".card__title");
-  // like_button
-  // const likeButton = cardElement.querySelector(".card__like-button");
-
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle("card__like-button_active");
-  // });
-
-  //// find delete-button///////
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-
-  /// add event-listener to the delete-button/////
-  // cardDeleteButton.addEventListener("click", () => {
-  //   cardElement.remove();
-  // });
-
-  //// add a click-listener to the cardImage////
-  /// openModal with preViewImageModal
-  cardImage.addEventListener("click", () => {
-    modalImageSrc.setAttribute("src", cardData.link);
-    modalImageSrc.setAttribute("alt", cardData.name);
-    modalImageDescription.textContent = cardData.name;
-    // preViewImageModal.classList.add("modal_opened");
-    openPopup(preViewImageModal);
-  });
-
-  // set the path to the image to the link field of the object
-  // cardImage.setAttribute("src", cardData.link);
-
-  // set the image alt text to the name field of the object
-  cardImage.setAttribute("alt", cardData.name);
-
-  // set the card title to the name field of the object, too
-  cardTitle.textContent = cardData.name;
-
-  // return the ready HTML element with the filled-in data.
-  return cardElement;
-}
-
 addNewCardButton.addEventListener("click", () => {
   openPopup(profileAddModal);
 });
@@ -177,11 +133,6 @@ profileEditForm.addEventListener("submit", (e) => {
   closePopup(profileEditModal);
 });
 
-// initialCards.forEach((cardData) => {
-//   const cardElement = getCardElement(cardData);
-//   cardList.append(cardElement);
-// });
-
 //////////////////////////////////eventListeners for modal and images /////////////////////////////////////
 
 const popups = document.querySelectorAll(".modal"); ////// recordatorio: Usar las mismas clases para popups
@@ -206,6 +157,14 @@ function handleEscape(evt) {
 }
 
 ////////////// sprint 7 classes////////////////////////////////
+
+function handleImageClick(cardData) {
+  modalImageSrc.setAttribute("src", cardData.link);
+  modalImageSrc.setAttribute("alt", cardData.name);
+  modalImageDescription.textContent = cardData.name;
+  openPopup(preViewImageModal);
+}
+
 initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
   const card = new Card(
@@ -218,14 +177,3 @@ initialCards.forEach((cardData) => {
   const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
   cardList.append(cardElement);
 });
-function handleImageClick() {
-  this._cardElement
-    .querySelector("#modal__image")
-    .setAttribute(("src", this._link));
-  this._cardElement
-    .querySelector("#modal__image")
-    .setAttribute(("alt", this._link));
-  this._cardElement.querySelector("#modal__image_description").textContent =
-    this._name;
-  openPopup(preViewImageModal);
-}
