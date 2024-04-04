@@ -108,8 +108,8 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
   // access the card title and image and store them in variables
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
+  // const cardImage = cardElement.querySelector(".card__image");
+  // const cardTitle = cardElement.querySelector(".card__title");
   // like_button
   // const likeButton = cardElement.querySelector(".card__like-button");
 
@@ -136,7 +136,7 @@ function getCardElement(cardData) {
   });
 
   // set the path to the image to the link field of the object
-  cardImage.setAttribute("src", cardData.link);
+  // cardImage.setAttribute("src", cardData.link);
 
   // set the image alt text to the name field of the object
   cardImage.setAttribute("alt", cardData.name);
@@ -177,10 +177,10 @@ profileEditForm.addEventListener("submit", (e) => {
   closePopup(profileEditModal);
 });
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardList.append(cardElement);
-});
+// initialCards.forEach((cardData) => {
+//   const cardElement = getCardElement(cardData);
+//   cardList.append(cardElement);
+// });
 
 //////////////////////////////////eventListeners for modal and images /////////////////////////////////////
 
@@ -206,9 +206,10 @@ function handleEscape(evt) {
 }
 
 ////////////// sprint 7 classes////////////////////////////////
-
 initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
   const card = new Card(cardData.name, cardData.link, "#card-template");
-  card.getview(); /// recordar de importar la Card class arriba de todo
+
+  const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
+  cardList.append(cardElement);
 });

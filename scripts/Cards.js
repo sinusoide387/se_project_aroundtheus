@@ -3,6 +3,7 @@ export class Card {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
+
     // // console.log(
     // //   `Card Name: ${this._name}, Card Link: ${this._link} selector : ${this._cardSelector}`
     // );
@@ -38,10 +39,18 @@ export class Card {
     // const cardElement = cardTemplate.content
     //   .cloneNode(true)
     //   .querySelector(".card"); //Otra forma de obtener el template y clonar
+    this._cardElement
+      .querySelector(".card__image")
+      .setAttribute("src", this._link);
+    this._cardElement
+      .querySelector(".card__title")
+      .setAttribute("alt", this._name);
+    this._cardElement.querySelector(".card__title").textContent = this._name;
     console.log(this._cardElement);
-    this._setEventListeners(); //funcion que llama los eventlisteners
+    this._setEventListeners();
+    //funcion que llama los eventlisteners
     //get card view.
     //set eventListeners.
-    // return the card.
+    return this._cardElement;
   }
 }
