@@ -1,4 +1,5 @@
-import { Card } from "./Card.js";
+import { FormValidation } from "../components/FormValidation.js";
+import { Card } from "../components/Card.js";
 
 const cardData1 = {
   name: "Yosemite Valley",
@@ -165,6 +166,8 @@ function handleImageClick(cardData) {
   openPopup(preViewImageModal);
 }
 
+///////////card class//////////
+
 initialCards.forEach((cardData) => {
   //// intinera entre todos los datos y los manda a Card class
   const card = new Card(
@@ -177,3 +180,22 @@ initialCards.forEach((cardData) => {
   const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
   cardList.append(cardElement);
 });
+
+//////// validation class/////////
+
+const settings = {
+  formSelector: ".modal__form", //".popup__form"
+  inputSelector: ".modal__input", // ".popup__input",
+  submitButtonSelector: ".modal__button", //".popup__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible", //"popup__error"//
+};
+
+const editFormValidation = new FormValidation(settings, profileEditForm);
+
+const addFormValidation = new FormValidation(settings, profileAddForm);
+// const addFormValidation = new FormValidation(settings, addForm);
+
+editFormValidation.enableValidation();
+addFormValidation.enableValidation();
