@@ -99,15 +99,7 @@ function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
-// function getCardElement(data) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImage = document.querySelector(".card__image");
-//   const cardTitle = document.querySelector(".card__description");
-//   cardImage.src = data.link;
-//   cardImage.alt = data.name;
-//   cardTitle.textContent = data.name;
-//   return cardElement;
-// }
+
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
   const getCard = new Card( // esto es lo que tengo que hacer al comienzo, una funcion con una nueva constante que va a llevar la "clase" que voy a crear!!
@@ -204,18 +196,17 @@ initialCards.forEach((cardData) => {
 //////// validation class/////////
 
 const settings = {
-  formSelector: ".modal__form", //".popup__form"
-  inputSelector: ".modal__input", // ".popup__input",
-  submitButtonSelector: ".modal__button", //".popup__button",
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible", //"popup__error"//
+  errorClass: "modal__error_visible",
 };
 
 const editFormValidation = new FormValidation(settings, profileEditForm);
 
 const addFormValidation = new FormValidation(settings, profileAddForm);
-// const addFormValidation = new FormValidation(settings, addForm);
 
 editFormValidation.enableValidation();
 addFormValidation.enableValidation();
