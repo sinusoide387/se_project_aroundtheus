@@ -112,7 +112,6 @@ function getCardView(cardData) {
 }
 
 initialCards.forEach((cardData) => {
-  //aca lo que hago es aplicar la funcion para crear cartas usando los datos iniciales (initialcards)
   const cardElement = getCardView(cardData);
   cardList.append(cardElement);
 });
@@ -120,7 +119,7 @@ initialCards.forEach((cardData) => {
 function renderCard(cardData) {
   //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
   const cardElement = getCardView(cardData);
-  cardList.append(cardElement);
+  cardList.prepend(cardElement);
 }
 
 addNewCardButton.addEventListener("click", () => {

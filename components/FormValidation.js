@@ -65,6 +65,7 @@ export class FormValidation {
   enableValidation() {
     this._form.addEventListener("submit", (e) => {
       e.preventDefault();
+      this._disableButton();
     });
     this._setEventListeners();
     this.toggleButtonState();
