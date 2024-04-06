@@ -48,7 +48,7 @@ export class Card {
       .querySelector(".card__image")
       .setAttribute("src", this._link);
     this._cardElement // Obtenemos la imagen y le asignamos el "src".
-      .querySelector(".card__title")
+      .querySelector(".card__image")
       .setAttribute("alt", this._name);
     this._cardElement.querySelector(".card__title").textContent = this._name; //asi la descripcion de la card.
 

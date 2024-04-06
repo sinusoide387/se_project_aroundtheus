@@ -144,6 +144,7 @@ profileEditForm.addEventListener("submit", (e) => {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
+  profileEditForm.reset();
 });
 
 //////////////////////////////////eventListeners for modal and images /////////////////////////////////////
@@ -205,8 +206,7 @@ const settings = {
 };
 
 const editFormValidation = new FormValidation(settings, profileEditForm);
+editFormValidation.enableValidation();
 
 const addFormValidation = new FormValidation(settings, profileAddForm);
-
-editFormValidation.enableValidation();
 addFormValidation.enableValidation();
