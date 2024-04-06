@@ -89,16 +89,25 @@ const modalImageDescription = preViewImageModal.querySelector(
   "#modal__image_description"
 );
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
-// I am not seeing the error you mentioned in review. PLEASE provide repro steps.
+
 function openPopup(popup) {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscape);
-} ///I am not seeing the error you mentioned in review. PLEASE provide repro steps.
+}
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
+// function getCardElement(data) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImage = document.querySelector(".card__image");
+//   const cardTitle = document.querySelector(".card__description");
+//   cardImage.src = data.link;
+//   cardImage.alt = data.name;
+//   cardTitle.textContent = data.name;
+//   return cardElement;
+// }
 
 function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
