@@ -108,9 +108,20 @@ function closePopup(popupclose) {
 //   cardTitle.textContent = data.name;
 //   return cardElement;
 // }
+function getCardView(cardData) {
+  // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
+  const getCard = new Card( // esto es lo que tengo que hacer al comienzo, una funcion con una nueva constante que va a llevar la "clase" que voy a crear!!
+    cardData.name,
+    cardData.link,
+    "#card-template",
+    handleImageClick
+  );
+  return getCard.getview(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
+}
 
 function renderCard(cardData) {
-  const cardElement = getCardElement(cardData);
+  //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
+  const cardElement = getCardView(cardData);
   cardList.prepend(cardElement);
 }
 
@@ -120,11 +131,11 @@ addNewCardButton.addEventListener("click", () => {
 
 profileAddForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = profilePlaceInput.value;
+  const name = profilePlaceInput.value; //valores que tipeo en los inputs
   const link = profilePlaceInputUrl.value;
-  profileAddForm.reset();
-  renderCard({ name, link }, cardList);
+  renderCard({ name, link }, cardList); // llama esta funcion que toma los datos, mas el blue print de la funcion getCardview (que contiene la clase)
   closePopup(profileAddModal);
+  profileAddForm.reset(); //resetea la form una vez que se dio el listener (submmit)
 });
 
 ///////////////////////////////////////Functions and EventListeners (edit-modal)////////////////////////////////////////////////////
