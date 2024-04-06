@@ -99,7 +99,7 @@ function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
-
+///// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
   const getCard = new Card( // esto es lo que tengo que hacer al comienzo, una funcion con una nueva constante que va a llevar la "clase" que voy a crear!!
@@ -111,10 +111,16 @@ function getCardView(cardData) {
   return getCard.getview(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
+initialCards.forEach((cardData) => {
+  //aca lo que hago es aplicar la funcion para crear cartas usando los datos iniciales (initialcards)
+  const cardElement = getCardView(cardData);
+  cardList.append(cardElement);
+});
+
 function renderCard(cardData) {
   //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
   const cardElement = getCardView(cardData);
-  cardList.prepend(cardElement);
+  cardList.append(cardElement);
 }
 
 addNewCardButton.addEventListener("click", () => {
@@ -178,21 +184,6 @@ function handleImageClick(cardData) {
   modalImageDescription.textContent = cardData.name;
   openPopup(preViewImageModal);
 }
-
-///////////card class//////////
-
-initialCards.forEach((cardData) => {
-  //// intinera entre todos los datos y los manda a Card class
-  const card = new Card(
-    cardData.name,
-    cardData.link,
-    "#card-template",
-    handleImageClick
-  );
-
-  const cardElement = card.getview(); /// recordar de importar la Card class arriba de todo
-  cardList.append(cardElement);
-});
 
 //////// validation class/////////
 

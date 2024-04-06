@@ -1,6 +1,6 @@
 export class FormValidation {
   constructor(settings, formElement) {
-    this._formSelector = formElement;
+    this._form = formElement;
 
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
@@ -9,18 +9,14 @@ export class FormValidation {
     this._errorClass = settings.errorClass;
   }
   _hideInputError(inputEl) {
-    this._errorMessageEl = this._formSelector.querySelector(
-      `#${inputEl.id}-error`
-    );
+    this._errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
     this._errorMessageEl.textContent = " ";
     this._errorMessageEl.classList.remove(this._errorClass);
   }
 
   _showInputError(inputEl) {
-    this._errorMessageEl = this._formSelector.querySelector(
-      `#${inputEl.id}-error`
-    );
+    this._errorMessageEl = this._form.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.add(this._inputErrorClass);
     this._errorMessageEl.textContent = inputEl.validationMessage;
     this._errorMessageEl.classList.add(this._errorClass);
@@ -54,11 +50,9 @@ export class FormValidation {
   }
   _setEventListeners() {
     this._inputEls = Array.from(
-      this._formSelector.querySelectorAll(this._inputSelector)
+      this._form.querySelectorAll(this._inputSelector)
     );
-    this._submitButton = this._formSelector.querySelector(
-      this._submitButtonSelector
-    );
+    this._submitButton = this._form.querySelector(this._submitButtonSelector);
     // toggleButtonState(inputEls, submitButton, options); //// de esta forma el boton no esta activado desde que se abre el popup
 
     this._inputEls.forEach((inputEl) => {
@@ -69,7 +63,7 @@ export class FormValidation {
     });
   }
   enableValidation() {
-    this._formSelector.addEventListener("submit", (e) => {
+    this._form.addEventListener("submit", (e) => {
       e.preventDefault();
     });
     this._setEventListeners();
@@ -79,6 +73,5 @@ export class FormValidation {
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
-    this.enableValidation();
   }
 }
