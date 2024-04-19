@@ -1,5 +1,6 @@
 import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
+import "../pages/index.css";
 
 const cardData1 = {
   name: "Yosemite Valley",
