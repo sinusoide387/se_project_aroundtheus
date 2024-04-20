@@ -1,5 +1,7 @@
 import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
+import { Section } from "../scripts/Section.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 import "../pages/index.css";
 
 const cardData1 = {
@@ -103,7 +105,7 @@ function closePopup(popupclose) {
 ///// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const getCard = new Card( // esto es lo que tengo que hacer al comienzo, una funcion con una nueva constante que va a llevar la "clase" que voy a crear!!
+  const getCard = new Card(
     cardData.name,
     cardData.link,
     "#card-template",
@@ -117,11 +119,11 @@ initialCards.forEach((cardData) => {
   cardList.append(cardElement);
 });
 
-function renderCard(cardData) {
-  //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
-  const cardElement = getCardView(cardData);
-  cardList.prepend(cardElement);
-}
+// function renderCard(cardData) {
+//   //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
+//   const cardElement = getCardView(cardData);
+//   cardList.prepend(cardElement);
+// }
 
 addNewCardButton.addEventListener("click", () => {
   openPopup(profileAddModal);
@@ -201,3 +203,19 @@ editFormValidation.enableValidation();
 
 const addFormValidation = new FormValidation(settings, profileAddForm);
 addFormValidation.enableValidation();
+
+//// Section class/////
+
+const renderNewCards = new Section(
+  { initialCards, renderer: getCardView() },
+  ".cards__list"
+);
+renderNewCards.renderItems();
+
+//// PopupWithForm class /////
+
+const newCardPopup = new PopupWithForm("profile__add-form", () => {});
+
+newCardPopup.open();
+
+newCardPopup.close();
