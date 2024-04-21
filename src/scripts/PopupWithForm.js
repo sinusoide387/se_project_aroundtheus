@@ -1,11 +1,29 @@
 import Popup from "./Popup";
 
 export class PopupWithForm extends Popup {
-  constructor(popupSelector, handleSubmitForm) {
+  constructor(popupSelector) {
     super({ popupSelector }); //aca paso el valor ("profile__add-form") a la clase padre (Popup.js), usando super.
     this._popupForm = this._popupElement.querySelector(".modal__form"); //tomamos el form dentro del popupElement que se genero en la clase padre (Popup.js).
-    this._handleSubmitForm = handleSubmitForm;
+    console.log(this._popupForm);
   }
+  setEventListener() {
+    super.setEventListeners();
+    this._popupForm.addEventListener("summit", (e) => {
+      e.preventDefault();
+
+      const titleInput = this._popupForm.querySelector("#profile__title-input");
+      const descriptionInput = this._popupForm.querySelector(
+        "#profile__description-input"
+      );
+
+      const titleValue = titleInput.value.trim();
+      const descriptionValue = descriptionInput.value.trim();
+
+      // procesa la informacion con el eventlistener
+      this.updateProfile(titleValue, descriptionValue);
+    });
+  }
+
   close() {
     this._popupForm.reset();
     super.close(); // super se refiere al padre, osea el method close del padre

@@ -2,6 +2,7 @@ import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../scripts/Section.js";
 import { PopupWithForm } from "./PopupWithForm.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 import "../pages/index.css";
 
 const cardData1 = {
@@ -216,8 +217,15 @@ renderNewCards.renderItems();
 
 //// PopupWithForm class /////
 
-// const newCardPopup = new PopupWithForm("profile__add-form", () => {});
+const popupWithForm = new PopupWithForm(".modal__form");
 
-// newCardPopup.open();
+popupWithForm.setEventListeners();
 
-// newCardPopup.close();
+//// PopupWithImage class ////
+
+const popupWithImage = new PopupWithImage(initialCards);
+
+popupWithImage.open({
+  name: initialCards.name,
+  link: initialCards.link,
+});
