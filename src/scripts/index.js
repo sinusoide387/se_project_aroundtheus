@@ -102,15 +102,17 @@ function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscape);
 }
+
 ///// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
   const getCard = new Card(
-    cardData.name,
-    cardData.link,
+    cardData.name || cardData.Name,
+    cardData.link || cardData.Link,
     "#card-template",
     handleImageClick
   );
+
   return getCard.getview(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
@@ -207,15 +209,15 @@ addFormValidation.enableValidation();
 //// Section class/////
 
 const renderNewCards = new Section(
-  { initialCards, renderer: getCardView() },
+  { items: initialCards, renderer: getCardView },
   ".cards__list"
 );
 renderNewCards.renderItems();
 
 //// PopupWithForm class /////
 
-const newCardPopup = new PopupWithForm("profile__add-form", () => {});
+// const newCardPopup = new PopupWithForm("profile__add-form", () => {});
 
-newCardPopup.open();
+// newCardPopup.open();
 
-newCardPopup.close();
+// newCardPopup.close();
