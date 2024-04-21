@@ -5,7 +5,20 @@ export class PopupWithForm extends Popup {
     super({ popupSelector }); //aca paso el valor ("profile__add-form") a la clase padre (Popup.js), usando super.
     this._popupForm = this._popupElement.querySelector(".modal__form"); //tomamos el form dentro del popupElement que se genero en la clase padre (Popup.js).
     console.log(this._popupForm);
+    this._formInputs = this._popupElement.querySelectorAll(".modal__input");
   }
+
+  _getInputValues() {
+    // hacer un objeto para los inputs
+    const inputObject = {};
+    // nombra cada input con su valor
+    this._formInputs.forEach((input) => {
+      inputObject[input.name] = input.value;
+    });
+    // y devuelve el input con el valor del nombre
+    return inputObject;
+  }
+
   setEventListener() {
     super.setEventListeners();
     this._popupForm.addEventListener("summit", (e) => {

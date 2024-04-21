@@ -1,6 +1,8 @@
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector); // toma el popupSelector de la clase hijo y genera el popupElement que lo puede usar la clase hijo
+    console.log(this._popupElement);
+    this._closeButton = this._popupElement.querySelector(".modal__close");
   }
   _handleEscClose(evt) {
     //close with Esc button
@@ -15,15 +17,18 @@ export default class Popup {
   close() {
     //close popup and remove handleEscClose
     this._popupElement.classList.remove("modal_opened");
-    document.removeEventListener("keyup", this._handleEscClose);
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   setEventListeners() {
     //set event listeners
-    this._popupElement
-      .querySelector(".modal__close")
-      .addEventListener("click", () => {
+    this._popupElement.addEventListener("click", (event) => {
+      if (event.target === event.currentTarget) {
         this.close();
-      });
+      }
+    });
+    this._closeButton.addEventListener("click", () => {
+      this.close();
+    });
   }
 }
