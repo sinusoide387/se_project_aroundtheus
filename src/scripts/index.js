@@ -116,10 +116,10 @@ function getCardView(cardData) {
   return getCard.getview(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardView(cardData);
-  cardList.append(cardElement);
-});
+// initialCards.forEach((cardData) => {
+//   const cardElement = getCardView(cardData);
+//   cardList.append(cardElement);
+// });
 
 // function renderCard(cardData) {
 //   //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
