@@ -223,9 +223,5 @@ popupWithForm.setEventListeners();
 
 //// PopupWithImage class ////
 
-const popupWithImage = new PopupWithImage(initialCards);
-
-popupWithImage.open({
-  name: initialCards.name,
-  link: initialCards.link,
-});
+const popupWithImage = new PopupWithImage();
+popupWithImage.open({ name: initialCards, link: initialCards });
