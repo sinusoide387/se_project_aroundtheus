@@ -217,10 +217,10 @@ renderNewCards.renderItems();
 
 //// PopupWithForm class /////
 
-const popupWithForm = new PopupWithForm("#profile__add-form");
+const popupWithForm = new PopupWithForm("#rofile__edit-modal");
 popupWithForm.setEventListener();
 
 //// PopupWithImage class ////
 
-const pop = new PopupWithImage("#preview__image_modal");
-pop.setEventListener();
+const popupImage = new PopupWithImage("#preview__image_modal");
+popupImage.setEventListener();
