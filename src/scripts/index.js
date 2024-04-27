@@ -217,8 +217,19 @@ renderNewCards.renderItems();
 
 //// PopupWithForm class /////
 
-const newCradPopup = new PopupWithForm("#profile__add-form", () => {});
-newCradPopup.setEventListener();
+const editProfilePopup = new PopupWithForm(
+  "#profile__edit-modal",
+  handleEditFormSubmit
+);
+
+editProfilePopup.setEventListeners();
+
+const addPlacePopup = new PopupWithForm(
+  "#profile__add-form",
+  handleAddFormSubmit
+);
+
+addPlacePopup.setEventListeners();
 
 //// PopupWithImage class ////
 

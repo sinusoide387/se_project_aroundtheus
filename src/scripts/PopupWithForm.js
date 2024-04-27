@@ -3,8 +3,8 @@ import Popup from "./Popup";
 export class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector); //aca paso el valor ("profile__add-form") a la clase padre (Popup.js), usando super.
-    this._popupForm = this._popupElement.querySelector(".modal__form"); //tomamos el form dentro del popupElement que se genero en la clase padre (Popup.js).
-    console.log(this._popupForm);
+    this._popupForm = whi._popupElement.querySelector(".modal__form");
+    console.log(this._popupElement);
     this._formInputs = this._popupElement.querySelectorAll(".modal__input");
     this._handleFormSubmit = handleFormSubmit;
   }
