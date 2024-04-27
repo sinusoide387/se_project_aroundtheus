@@ -217,8 +217,8 @@ renderNewCards.renderItems();
 
 //// PopupWithForm class /////
 
-const popupWithForm = new PopupWithForm("#rofile__edit-modal");
-popupWithForm.setEventListener();
+const newCradPopup = new PopupWithForm("#profile__add-form", () => {});
+newCradPopup.setEventListener();
 
 //// PopupWithImage class ////
 
