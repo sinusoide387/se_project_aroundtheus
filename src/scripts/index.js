@@ -152,8 +152,8 @@ profileEditButton.addEventListener("click", () => {
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  // profileTitle.textContent = profileTitleInput.value;
-  // profileDescription.textContent = profileDescriptionInput.value;
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
   profileEditForm.reset();
 });
@@ -190,6 +190,18 @@ function handleImageClick(cardData) {
   openPopup(preViewImageModal);
 }
 
+/// functions handlersummitforms
+
+function handleAddFormSubmit(name, link) {
+  name.value = profilePlaceInput.value;
+  link.value = profilePlaceInputUrl.value;
+}
+
+function handleEditSubmit(title, descripcion) {
+  title.textContent = profileTitleInput.value;
+  descripcion.textContent = profileDescriptionInput.value;
+}
+
 //////// validation class/////////
 
 const settings = {
@@ -219,12 +231,15 @@ renderNewCards.renderItems();
 
 const editProfilePopup = new PopupWithForm(
   "#profile__edit-modal",
-  handleFormSubmit
+  handleEditSubmit(titleValue, descriptionValue)
 );
 
 editProfilePopup.setEventListeners();
 
-const addPlacePopup = new PopupWithForm("#profile__add-form", handleFormSubmit);
+const addPlacePopup = new PopupWithForm(
+  "#profile__add-form",
+  handleAddFormSubmit(titleValue, descriptionValue)
+);
 
 addPlacePopup.setEventListeners();
 
@@ -232,5 +247,3 @@ addPlacePopup.setEventListeners();
 
 const popupImage = new PopupWithImage("#preview__image_modal");
 popupImage.setEventListener();
-
-//// summit handler ////
