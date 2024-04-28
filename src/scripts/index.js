@@ -152,8 +152,8 @@ profileEditButton.addEventListener("click", () => {
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+  // profileTitle.textContent = profileTitleInput.value;
+  // profileDescription.textContent = profileDescriptionInput.value;
   closePopup(profileEditModal);
   profileEditForm.reset();
 });
@@ -219,15 +219,12 @@ renderNewCards.renderItems();
 
 const editProfilePopup = new PopupWithForm(
   "#profile__edit-modal",
-  handleEditFormSubmit
+  handleFormSubmit
 );
 
 editProfilePopup.setEventListeners();
 
-const addPlacePopup = new PopupWithForm(
-  "#profile__add-form",
-  handleAddFormSubmit
-);
+const addPlacePopup = new PopupWithForm("#profile__add-form", handleFormSubmit);
 
 addPlacePopup.setEventListeners();
 
@@ -235,3 +232,5 @@ addPlacePopup.setEventListeners();
 
 const popupImage = new PopupWithImage("#preview__image_modal");
 popupImage.setEventListener();
+
+//// summit handler ////
