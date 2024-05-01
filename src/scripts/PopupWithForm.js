@@ -20,9 +20,11 @@ export class PopupWithForm extends Popup {
     return inputObject;
   }
 
+  // _getInputValue should be called to get the object.
+
   setEventListener() {
     super.setEventListeners();
-    this._popupForm.addEventListener("summit", (e) => {
+    this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const titleInput = this._popupForm.querySelector("#profile__title-input");
