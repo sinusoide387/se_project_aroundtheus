@@ -230,15 +230,15 @@ renderNewCards.renderItems();
 //// PopupWithForm class /////
 
 const editProfilePopup = new PopupWithForm(
-  "#profile__edit-modal",
-  handleEditSubmit(titleValue, descriptionValue)
+  { popupSelector: "#profile__edit-modal" },
+  handleEditSubmit
 );
 
 editProfilePopup.setEventListeners();
 
 const addPlacePopup = new PopupWithForm(
-  "#profile__add-form",
-  handleAddFormSubmit(titleValue, descriptionValue)
+  { popupSelector: "#profile__add-form" },
+  handleAddFormSubmit
 );
 
 addPlacePopup.setEventListeners();
@@ -246,4 +246,4 @@ addPlacePopup.setEventListeners();
 //// PopupWithImage class ////
 
 const popupImage = new PopupWithImage("#preview__image_modal");
-popupImage.setEventListener();
+popupImage.setEventListeners();
