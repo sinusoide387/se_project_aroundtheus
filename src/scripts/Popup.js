@@ -1,7 +1,7 @@
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector); // toma el popupSelector de la clase hijo y genera el popupElement que lo puede usar la clase hijo
-    console.log(popupSelector);
+
     this._closeButton = document.querySelector(".modal__close");
   }
   _handleEscClose(evt) {

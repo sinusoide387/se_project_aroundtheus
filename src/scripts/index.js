@@ -133,14 +133,14 @@ addNewCardButton.addEventListener("click", () => {
   openPopup(profileAddModal);
 });
 
-profileAddForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = profilePlaceInput.value; //valores que tipeo en los inputs
-  const link = profilePlaceInputUrl.value;
-  renderCard({ name, link }, cardList); // llama esta funcion que toma los datos, mas el blue print de la funcion getCardview (que contiene la clase)
-  closePopup(profileAddModal);
-  profileAddForm.reset(); //resetea la form una vez que se dio el listener (submmit)
-});
+// profileAddForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const name = profilePlaceInput.value; //valores que tipeo en los inputs
+//   const link = profilePlaceInputUrl.value;
+//   renderCard({ name, link }, cardList); // llama esta funcion que toma los datos, mas el blue print de la funcion getCardview (que contiene la clase)
+//   closePopup(profileAddModal);
+//   profileAddForm.reset(); //resetea la form una vez que se dio el listener (submmit)
+// });
 
 ///////////////////////////////////////Functions and EventListeners (edit-modal)////////////////////////////////////////////////////
 
