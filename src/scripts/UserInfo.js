@@ -9,5 +9,13 @@ export class UserInfo {
       job: this._job.textContent,
     };
   }
-  setUserInfo() {}
+
+  setUserInfo(name, job) {
+    if (!this._name || !this._job) {
+      console.error("Name or job element is not found.");
+      return;
+    }
+    this._name.textContent = name;
+    this._job.textContent = job;
+  }
 }

@@ -4,6 +4,7 @@ import { Section } from "../scripts/Section.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import PopupWithImage, { popupWithImage } from "./PopupWithImage.js";
 import "../pages/index.css";
+import { UserInfo } from "./UserInfo.js";
 
 const cardData1 = {
   name: "Yosemite Valley",
@@ -247,3 +248,12 @@ addPlacePopup.setEventListeners();
 
 const popupImage = new PopupWithImage("#preview__image_modal");
 popupImage.setEventListeners();
+
+/// User Info class ///
+
+const newUserInfo = new UserInfo({
+  nameSelector: "#profile__title-input",
+  jobSelector: "#profile__description-input",
+});
+
+newUserInfo.setUserInfo;
