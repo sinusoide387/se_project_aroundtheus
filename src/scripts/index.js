@@ -115,7 +115,7 @@ function getCardView(cardData) {
     handleImageClick
   );
 
-  return getCard.getview(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
+  return getCard.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
 // initialCards.forEach((cardData) => {
@@ -191,11 +191,6 @@ function handleImageClick(cardData) {
   openPopup(preViewImageModal);
 }
 
-const newCardSection = new Section(
-  { items: [], renderer: getCardView },
-  ".cards__list"
-);
-
 /// functions handlersummitforms
 
 function handleAddFormSubmit(inputValues) {
@@ -206,7 +201,7 @@ function handleAddFormSubmit(inputValues) {
     name: name,
     link: link,
   };
-  newCardSection.addItem(newCardData);
+  cardSection.addItem(newCardData.getView());
 
   closePopup(profileAddModal);
 

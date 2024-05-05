@@ -38,7 +38,7 @@ export class Card {
     this._cardElement = null;
   }
   ///////function to render the cards///////
-  getview() {
+  getView() {
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
