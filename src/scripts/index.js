@@ -2,7 +2,7 @@ import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../scripts/Section.js";
 import { PopupWithForm } from "./PopupWithForm.js";
-import PopupWithImage, { popupWithImage } from "./PopupWithImage.js";
+import PopupWithImage from "./PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "./UserInfo.js";
 
@@ -193,9 +193,29 @@ function handleImageClick(cardData) {
 
 /// functions handlersummitforms
 
-function handleAddFormSubmit(name, link) {
-  name.value = profilePlaceInput.value;
-  link.value = profilePlaceInputUrl.value;
+function handleAddFormSubmit(inputValues) {
+  console.log(inputValues);
+  const { name, link } = inputValues;
+
+  const newCardData = {
+    name: name,
+    link: link,
+  };
+  const newCardElement = new Section(
+    {
+      items: newCardData,
+      renderer: getCardView,
+    },
+    ".cards__list"
+  );
+  newCardElement.addItem();
+
+  closePopup(profileAddModal);
+
+  profileAddForm.reset();
+
+  // name.value = profilePlaceInput.value;
+  // link.value = profilePlaceInputUrl.value;
 }
 
 function handleEditSubmit(title, descripcion) {
@@ -239,7 +259,7 @@ editProfilePopup.setEventListeners();
 
 const addPlacePopup = new PopupWithForm(
   { popupSelector: "#profile__add-form" },
-  handleAddFormSubmit()
+  handleAddFormSubmit
 );
 
 addPlacePopup.setEventListeners();
