@@ -239,7 +239,7 @@ editProfilePopup.setEventListeners();
 
 const addPlacePopup = new PopupWithForm(
   { popupSelector: "#profile__add-form" },
-  handleAddFormSubmit
+  handleAddFormSubmit()
 );
 
 addPlacePopup.setEventListeners();

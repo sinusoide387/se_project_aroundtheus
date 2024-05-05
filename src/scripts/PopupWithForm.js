@@ -6,12 +6,14 @@ export class PopupWithForm extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
 
     this._formInputs = this._popupElement.querySelectorAll(".modal__input");
+
     this._handleFormSubmit = handleFormSubmit;
   }
 
   _getInputValues() {
     // hacer un objeto para los inputs
     const inputObject = {};
+
     // nombra cada input con su valor
     this._formInputs.forEach((input) => {
       inputObject[input.name] = input.value;
@@ -22,25 +24,30 @@ export class PopupWithForm extends Popup {
 
   // _getInputValue should be called to get the object.
 
-  setEventListener() {
+  setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const inputValues = this._getInputValues;
-      this._handleFormSubmit(inputValues);
-      // const titleInput = this._popupForm.querySelector("#profile__title-input");
-      // const descriptionInput = this._popupForm.querySelector(
-      //   "#profile__description-input"
-      // );
-
-      // const titleValue = titleInput.value.trim();
-      // const descriptionValue = descriptionInput.value.trim();
-
-      // // procesa la informacion con el eventlistener
-      // this._handleFormSubmit(titleValue, descriptionValue);
-    });
+    this._popupForm.addEventListener("submit", () =>
+      this._handleFormSubmit(this._getInputValues())
+    );
   }
+
+  // console.log("Event listener attached!");
+  // e.preventDefault();
+
+  // const inputValues = this._getInputValues();
+  // console.log(inputValues);
+  // this._handleFormSubmit(inputValues);
+  /////////////
+  // const titleInput = this._popupForm.querySelector("#profile__title-input");
+  // const descriptionInput = this._popupForm.querySelector(
+  //   "#profile__description-input"
+  // );
+
+  // const titleValue = titleInput.value.trim();
+  // const descriptionValue = descriptionInput.value.trim();
+
+  // // procesa la informacion con el eventlistener
+  // this._handleFormSubmit(titleValue, descriptionValue);
 
   close() {
     this._popupForm.reset();
