@@ -191,6 +191,11 @@ function handleImageClick(cardData) {
   openPopup(preViewImageModal);
 }
 
+const newCardSection = new Section(
+  { items: [], renderer: getCardView },
+  ".cards__list"
+);
+
 /// functions handlersummitforms
 
 function handleAddFormSubmit(inputValues) {
@@ -201,14 +206,7 @@ function handleAddFormSubmit(inputValues) {
     name: name,
     link: link,
   };
-  const newCardElement = new Section(
-    {
-      items: newCardData,
-      renderer: getCardView,
-    },
-    ".cards__list"
-  );
-  newCardElement.addItem();
+  newCardSection.addItem(newCardData);
 
   closePopup(profileAddModal);
 
