@@ -222,11 +222,11 @@ addFormValidation.enableValidation();
 
 //// Section class/////
 
-const renderNewCards = new Section(
+const cardSection = new Section(
   { items: initialCards, renderer: getCardView },
   ".cards__list"
 );
-renderNewCards.renderItems();
+cardSection.renderItems();
 
 //// PopupWithForm class /////
 

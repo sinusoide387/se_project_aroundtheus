@@ -27,16 +27,18 @@ export class PopupWithForm extends Popup {
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const titleInput = this._popupForm.querySelector("#profile__title-input");
-      const descriptionInput = this._popupForm.querySelector(
-        "#profile__description-input"
-      );
+      const inputValues = this._getInputValues;
+      this._handleFormSubmit(inputValues);
+      // const titleInput = this._popupForm.querySelector("#profile__title-input");
+      // const descriptionInput = this._popupForm.querySelector(
+      //   "#profile__description-input"
+      // );
 
-      const titleValue = titleInput.value.trim();
-      const descriptionValue = descriptionInput.value.trim();
+      // const titleValue = titleInput.value.trim();
+      // const descriptionValue = descriptionInput.value.trim();
 
-      // procesa la informacion con el eventlistener
-      this._handleFormSubmit(titleValue, descriptionValue);
+      // // procesa la informacion con el eventlistener
+      // this._handleFormSubmit(titleValue, descriptionValue);
     });
   }
 
