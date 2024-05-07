@@ -60,11 +60,6 @@ const profileDescriptionInput = document.querySelector(
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card")
-  .cloneNode(true);
-
 const cardList = document.querySelector(".cards__list");
 //////////////////////Add_card_profile_elements/////////////////////////////////////////////////
 
@@ -93,6 +88,7 @@ const modalImageSrc = preViewImageModal.querySelector("#modal__image");
 const modalImageDescription = preViewImageModal.querySelector(
   "#modal__image_description"
 );
+
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
 
 function openPopup(popup) {
@@ -197,9 +193,6 @@ function handleAddFormSubmit(inputValues) {
   console.log(inputValues);
 
   const { name, link } = inputValues;
-
-  // name.value = profilePlaceInput.value;
-  // link.value = profilePlaceInputUrl.value;
 
   const newCard = new Card(name, link, "#card-template", handleImageClick);
   cardSection.addItem(newCard.getView());
