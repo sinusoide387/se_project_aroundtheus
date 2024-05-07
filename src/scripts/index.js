@@ -195,20 +195,18 @@ function handleImageClick(cardData) {
 
 function handleAddFormSubmit(inputValues) {
   console.log(inputValues);
+
   const { name, link } = inputValues;
 
-  const newCardData = {
-    name: name,
-    link: link,
-  };
-  cardSection.addItem(newCardData.getView());
+  // name.value = profilePlaceInput.value;
+  // link.value = profilePlaceInputUrl.value;
+
+  const newCard = new Card(name, link, "#card-template", handleImageClick);
+  cardSection.addItem(newCard.getView());
 
   closePopup(profileAddModal);
 
   profileAddForm.reset();
-
-  // name.value = profilePlaceInput.value;
-  // link.value = profilePlaceInputUrl.value;
 }
 
 function handleEditSubmit(title, descripcion) {
