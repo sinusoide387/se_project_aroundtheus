@@ -104,14 +104,14 @@ function closePopup(popupclose) {
 ///// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const getCard = new Card(
+  const card = new Card(
     cardData.name || cardData.Name,
     cardData.link || cardData.Link,
     "#card-template",
     handleImageClick
   );
 
-  return getCard.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
+  return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
 // initialCards.forEach((cardData) => {
@@ -232,6 +232,11 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
+//// Popups in general /////
+
+const popup = new PopupWithForm({ popupSelector: ".modal" });
+popup.open();
+popup.close();
 //// PopupWithForm class /////
 
 const editProfilePopup = new PopupWithForm(
@@ -255,9 +260,9 @@ popupImage.setEventListeners();
 
 /// User Info class ///
 
-const newUserInfo = new UserInfo({
+const newUserInfo = UserInfo({
   nameSelector: "#profile__title-input",
   jobSelector: "#profile__description-input",
 });
 
-newUserInfo.setUserInfo;
+newUserInfo.setUserInfo();
