@@ -91,10 +91,10 @@ const modalImageDescription = preViewImageModal.querySelector(
 
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
 
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscape);
-}
+// function openPopup(popup) {
+//   popup.classList.add("modal_opened");
+//   document.addEventListener("keydown", handleEscape);
+// }
 
 function closePopup(popupclose) {
   popupclose.classList.remove("modal_opened");
@@ -125,9 +125,9 @@ function getCardView(cardData) {
 //   cardList.prepend(cardElement);
 // }
 
-addNewCardButton.addEventListener("click", () => {
-  openPopup(profileAddModal);
-});
+// addNewCardButton.addEventListener("click", () => {
+//   openPopup(profileAddModal);
+// });
 
 // profileAddForm.addEventListener("submit", (e) => {
 //   e.preventDefault();
@@ -140,12 +140,12 @@ addNewCardButton.addEventListener("click", () => {
 
 ///////////////////////////////////////Functions and EventListeners (edit-modal)////////////////////////////////////////////////////
 
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent.trim();
-  profileDescriptionInput.value = profileDescription.textContent.trim();
+// profileEditButton.addEventListener("click", () => {
+//   profileTitleInput.value = profileTitle.textContent.trim();
+//   profileDescriptionInput.value = profileDescription.textContent.trim();
 
-  openPopup(profileEditModal);
-});
+//   openPopup(profileEditModal);
+// });
 
 profileEditForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -235,7 +235,12 @@ cardSection.renderItems();
 //// Popups in general /////
 
 const popup = new PopupWithForm({ popupSelector: ".modal" });
-popup.open();
+
+const addPlaceButton = document.querySelector("#profile__add-button");
+addPlaceButton.addEventListener("click", () => {
+  addPlacePopup.open(); //llamo el metodo open () cuando hago click en el boton. busco el boton y agrego eventlistener
+});
+
 popup.close();
 //// PopupWithForm class /////
 
@@ -245,6 +250,10 @@ const editProfilePopup = new PopupWithForm(
 );
 
 editProfilePopup.setEventListeners();
+const editProfileButton = document.querySelector("#profile__edit-button");
+editProfileButton.addEventListener("click", () => {
+  editProfilePopup.open();
+});
 
 const addPlacePopup = new PopupWithForm(
   { popupSelector: "#profile__add-form" },
@@ -260,7 +269,7 @@ popupImage.setEventListeners();
 
 /// User Info class ///
 
-const newUserInfo = UserInfo({
+const newUserInfo = new UserInfo({
   nameSelector: "#profile__title-input",
   jobSelector: "#profile__description-input",
 });
