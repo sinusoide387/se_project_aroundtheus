@@ -179,13 +179,16 @@ function handleEscape(evt) {
 }
 
 ////////////// sprint 7 classes////////////////////////////////
-
 function handleImageClick(cardData) {
-  modalImageSrc.setAttribute("src", cardData.link);
-  modalImageSrc.setAttribute("alt", cardData.name);
-  modalImageDescription.textContent = cardData.name;
-  openPopup(preViewImageModal);
+  const popupImage = new PopupWithImage("#preview__image_modal");
+  popupImage.open(cardData);
 }
+// function handleImageClick(cardData) {
+//   modalImageSrc.setAttribute("src", cardData.link);
+//   modalImageSrc.setAttribute("alt", cardData.name);
+//   modalImageDescription.textContent = cardData.name;
+//   openPopup(preViewImageModal);
+// }
 
 /// functions handlersubmitforms
 
