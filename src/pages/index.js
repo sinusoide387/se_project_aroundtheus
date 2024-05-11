@@ -147,13 +147,13 @@ function getCardView(cardData) {
 //   openPopup(profileEditModal);
 // });
 
-profileEditForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  closePopup(profileEditModal);
-  profileEditForm.reset();
-});
+// profileEditForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   profileTitle.textContent = profileTitleInput.value;
+//   profileDescription.textContent = profileDescriptionInput.value;
+//   closePopup(profileEditModal);
+//   profileEditForm.reset();
+// });
 
 //////////////////////////////////eventListeners for modal and images /////////////////////////////////////
 
@@ -202,9 +202,21 @@ function handleAddFormSubmit(inputValues) {
   profileAddForm.reset();
 }
 
-function handleEditSubmit(title, descripcion) {
-  title.textContent = profileTitleInput.value;
-  descripcion.textContent = profileDescriptionInput.value;
+function handleEditSubmit(inputValues) {
+  const { title, descripcion } = inputValues;
+
+  const newUserInfo = new UserInfo({
+    nameSelector: "#profile__title-input",
+    jobSelector: "#profile__description-input",
+  });
+
+  newUserInfo.setUserInfo(title, descripcion);
+
+  closePopup(profileEditModal);
+
+  profileEditForm.reset();
+  // title.textContent = profileTitleInput.value;
+  // descripcion.textContent = profileDescriptionInput.value;
 }
 
 //////// validation class/////////
