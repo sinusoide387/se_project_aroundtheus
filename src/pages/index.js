@@ -187,7 +187,7 @@ function handleImageClick(cardData) {
   openPopup(preViewImageModal);
 }
 
-/// functions handlersummitforms
+/// functions handlersubmitforms
 
 function handleAddFormSubmit(inputValues) {
   console.log(inputValues);
@@ -203,20 +203,19 @@ function handleAddFormSubmit(inputValues) {
 }
 
 function handleEditSubmit(inputValues) {
-  const { title, descripcion } = inputValues;
+  // una forma de resumir multiples parametros en uno solo
+  const { title, description } = inputValues; // topa los valores del "name" property en los inputs
 
   const newUserInfo = new UserInfo({
-    nameSelector: "#profile__title-input",
-    jobSelector: "#profile__description-input",
+    nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
+    jobSelector: "#profile__description",
   });
 
-  newUserInfo.setUserInfo(title, descripcion);
-
+  newUserInfo.setUserInfo(title, description); // tom nueva constante con los selectores y con setUserInfo los setea en la pantalla
+  console.log(title, description);
   closePopup(profileEditModal);
 
   profileEditForm.reset();
-  // title.textContent = profileTitleInput.value;
-  // descripcion.textContent = profileDescriptionInput.value;
 }
 
 //////// validation class/////////
@@ -277,13 +276,5 @@ addPlacePopup.setEventListeners();
 //// PopupWithImage class ////
 
 const popupImage = new PopupWithImage("#preview__image_modal");
+
 popupImage.setEventListeners();
-
-/// User Info class ///
-
-const newUserInfo = new UserInfo({
-  nameSelector: "#profile__title-input",
-  jobSelector: "#profile__description-input",
-});
-
-newUserInfo.setUserInfo();
