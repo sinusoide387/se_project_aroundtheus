@@ -114,49 +114,6 @@ function getCardView(cardData) {
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
-// initialCards.forEach((cardData) => {
-//   const cardElement = getCardView(cardData);
-//   cardList.append(cardElement);
-// });
-
-// function renderCard(cardData) {
-//   //Esta funcion se encarga de mostrar los datos que usemos de parametro despues del selector especificado (cardList en este caso)
-//   const cardElement = getCardView(cardData);
-//   cardList.prepend(cardElement);
-// }
-
-// addNewCardButton.addEventListener("click", () => {
-//   openPopup(profileAddModal);
-// });
-
-// profileAddForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const name = profilePlaceInput.value; //valores que tipeo en los inputs
-//   const link = profilePlaceInputUrl.value;
-//   renderCard({ name, link }, cardList); // llama esta funcion que toma los datos, mas el blue print de la funcion getCardview (que contiene la clase)
-//   closePopup(profileAddModal);
-//   profileAddForm.reset(); //resetea la form una vez que se dio el listener (submmit)
-// });
-
-///////////////////////////////////////Functions and EventListeners (edit-modal)////////////////////////////////////////////////////
-
-// profileEditButton.addEventListener("click", () => {
-//   profileTitleInput.value = profileTitle.textContent.trim();
-//   profileDescriptionInput.value = profileDescription.textContent.trim();
-
-//   openPopup(profileEditModal);
-// });
-
-// profileEditForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   profileTitle.textContent = profileTitleInput.value;
-//   profileDescription.textContent = profileDescriptionInput.value;
-//   closePopup(profileEditModal);
-//   profileEditForm.reset();
-// });
-
-//////////////////////////////////eventListeners for modal and images /////////////////////////////////////
-
 const popups = document.querySelectorAll(".modal"); ////// recordatorio: Usar las mismas clases para popups
 ///// remainder : Use the same classes for popups
 
@@ -178,31 +135,20 @@ function handleEscape(evt) {
   }
 }
 
-////////////// sprint 7 classes////////////////////////////////
 function handleImageClick(cardData) {
   const popupImage = new PopupWithImage("#preview__image_modal");
   popupImage.open(cardData);
 }
-// function handleImageClick(cardData) {
-//   modalImageSrc.setAttribute("src", cardData.link);
-//   modalImageSrc.setAttribute("alt", cardData.name);
-//   modalImageDescription.textContent = cardData.name;
-//   openPopup(preViewImageModal);
-// }
-
-/// functions handlersubmitforms
 
 function handleAddFormSubmit(inputValues) {
   console.log(inputValues);
 
   const { name, link } = inputValues;
 
-  const newCard = new Card(name, link, "#card-template", handleImageClick);
+  const newCard = new Card(name, link, "#card-template", handleImageClick); // I dont know how to implement getCardView again here?
   cardSection.addItem(newCard.getView());
 
   closePopup(profileAddModal);
-
-  profileAddForm.reset();
 }
 
 function handleEditSubmit(inputValues) {
@@ -220,8 +166,6 @@ function handleEditSubmit(inputValues) {
 
   profileEditForm.reset();
 }
-
-//////// validation class/////////
 
 const settings = {
   formSelector: ".modal__form",
