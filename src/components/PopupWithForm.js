@@ -27,29 +27,12 @@ export class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popupForm.addEventListener("submit", () =>
-      this._handleFormSubmit(this._getInputValues())
-    );
-    
+    this._popupForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+      super.close();
+    });
   }
-
-  // console.log("Event listener attached!");
-  // e.preventDefault();
-
-  // const inputValues = this._getInputValues();
-  // console.log(inputValues);
-  // this._handleFormSubmit(inputValues);
-  /////////////
-  // const titleInput = this._popupForm.querySelector("#profile__title-input");
-  // const descriptionInput = this._popupForm.querySelector(
-  //   "#profile__description-input"
-  // );
-
-  // const titleValue = titleInput.value.trim();
-  // const descriptionValue = descriptionInput.value.trim();
-
-  // // procesa la informacion con el eventlistener
-  // this._handleFormSubmit(titleValue, descriptionValue);
 
   close() {
     this._popupForm.reset();

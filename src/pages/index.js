@@ -91,16 +91,6 @@ const modalImageDescription = preViewImageModal.querySelector(
 
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
 
-// function openPopup(popup) {
-//   popup.classList.add("modal_opened");
-//   document.addEventListener("keydown", handleEscape);
-// }
-
-function closePopup(popupclose) {
-  popupclose.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscape);
-}
-
 ///// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
@@ -114,32 +104,6 @@ function getCardView(cardData) {
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
 
-const popups = document.querySelectorAll(".modal"); ////// recordatorio: Usar las mismas clases para popups
-///// remainder : Use the same classes for popups
-
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("modal__close")) {
-      closePopup(popup);
-    }
-  });
-});
-
-function handleEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal_opened");
-    closePopup(openedPopup);
-  }
-}
-
-function handleImageClick(cardData) {
-  const popupImage = new PopupWithImage("#preview__image_modal");
-  popupImage.open(cardData);
-}
-
 function handleAddFormSubmit(inputValues) {
   console.log(inputValues);
 
@@ -148,7 +112,7 @@ function handleAddFormSubmit(inputValues) {
   const newCard = new Card(name, link, "#card-template", handleImageClick); // I dont know how to implement getCardView again here?
   cardSection.addItem(newCard.getView());
 
-  closePopup(profileAddModal);
+  editProfilePopup.close(); // los metodos se llaman con la constante con la cual instantiate la clase.
 }
 
 function handleEditSubmit(inputValues) {
@@ -161,8 +125,9 @@ function handleEditSubmit(inputValues) {
   });
 
   newUserInfo.setUserInfo(title, description); // tom nueva constante con los selectores y con setUserInfo los setea en la pantalla
-  console.log(title, description);
-  closePopup(profileEditModal);
+
+  // closePopup(profileEditModal);
+  editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 
   profileEditForm.reset();
 }
@@ -208,6 +173,7 @@ const editProfilePopup = new PopupWithForm(
 );
 
 editProfilePopup.setEventListeners();
+
 const editProfileButton = document.querySelector("#profile__edit-button");
 editProfileButton.addEventListener("click", () => {
   editProfilePopup.open();
@@ -222,6 +188,11 @@ addPlacePopup.setEventListeners();
 
 //// PopupWithImage class ////
 
-const popupImage = new PopupWithImage("#preview__image_modal");
+const popupImage = new PopupWithImage("#preview__image_modal"); //llamo a la clase (insatntiate)
 
-popupImage.setEventListeners();
+function handleImageClick(cardData) {
+  // genero una funcion para poder usar un metodo de la clase en otros lugares (ejemplo:cuando creo nueva carta})
+  popupImage.open(cardData);
+}
+
+popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
