@@ -89,6 +89,15 @@ const modalImageDescription = preViewImageModal.querySelector(
   "#modal__image_description"
 );
 
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
 //////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
 
 ///// card class factory////////
@@ -105,41 +114,37 @@ function getCardView(cardData) {
 }
 
 function handleAddFormSubmit(inputValues) {
-  console.log(inputValues);
+  const { name, link } = inputValues; // toma el name y link de los inputs
 
-  const { name, link } = inputValues;
+  const cardData = {
+    // genero una constante que va a pasar como parametro de la lcase abajo
+    name: name,
+    link: link,
+  };
 
-  const newCard = new Card(name, link, "#card-template", handleImageClick); // I dont know how to implement getCardView again here?
-  cardSection.addItem(newCard.getView());
+  const cardElement = getCardView(cardData); // hago otra constante para agarrar la clase con el parametro o los valores
+  cardList.prepend(cardElement); // la cardList es un /ul en index.htm separa en una <section>
 
-  editProfilePopup.close(); // los metodos se llaman con la constante con la cual instantiate la clase.
+  editProfilePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
 }
+
+const newUserInfo = new UserInfo({
+  // llamo a la clase para usar los metodos
+  nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
+  jobSelector: "#profile__description",
+});
 
 function handleEditSubmit(inputValues) {
   // una forma de resumir multiples parametros en uno solo
   const { title, description } = inputValues; // topa los valores del "name" property en los inputs
 
-  const newUserInfo = new UserInfo({
-    nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
-    jobSelector: "#profile__description",
-  });
+  newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
 
-  newUserInfo.setUserInfo(title, description); // tom nueva constante con los selectores y con setUserInfo los setea en la pantalla
-
-  // closePopup(profileEditModal);
+ 
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 
   profileEditForm.reset();
 }
-
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
 
 const editFormValidation = new FormValidation(settings, profileEditForm);
 editFormValidation.enableValidation();
