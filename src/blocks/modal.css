@@ -73,6 +73,10 @@
 
   align-self: flex-end;
 }
+.modal__button:hover {
+  cursor: pointer;
+}
+
 .modal__close {
   background-image: url("../images/Close__Icon.svg");
   background-repeat: no-repeat;
@@ -106,6 +110,9 @@
   height: 40px;
   background-color: transparent;
   border: none;
+  /* cursor: pointer; */
+}
+.modal__image-close-button:hover {
   cursor: pointer;
 }
 

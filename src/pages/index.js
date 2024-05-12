@@ -123,7 +123,7 @@ function handleAddFormSubmit(inputValues) {
   };
 
   const cardElement = getCardView(cardData); // hago otra constante para agarrar la clase con el parametro o los valores
-  cardList.prepend(cardElement); // la cardList es un /ul en index.htm separa en una <section>
+  cardSection.addItem(cardElement); // la cardList es un /ul en index.htm separa en una <section>
 
   editProfilePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
 }
@@ -140,7 +140,6 @@ function handleEditSubmit(inputValues) {
 
   newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
 
- 
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 
   profileEditForm.reset();
@@ -181,6 +180,12 @@ editProfilePopup.setEventListeners();
 
 const editProfileButton = document.querySelector("#profile__edit-button");
 editProfileButton.addEventListener("click", () => {
+  const currentName = profileTitle.textContent.trim();
+  const currentDescription = profileDescription.textContent.trim();
+
+  profileTitleInput.value = currentName;
+  profileDescriptionInput.value = currentDescription;
+
   editProfilePopup.open();
 });
 
