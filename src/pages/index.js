@@ -40,8 +40,6 @@ const initialCards = [
   cardData6,
 ];
 
-///////////////////////////////////////Profile_edit_elements/////////////////////////////////////////////////////////////
-
 const profileEditButton = document.querySelector("#profile__edit-button");
 
 const profileEditModal = document.querySelector("#profile__edit-modal");
@@ -76,7 +74,7 @@ const profilePlaceInputUrl = document.querySelector(".modal__input-type_url");
 const profileCloseButtonPlace = document.querySelector(
   "#profile__close-modal-place"
 );
-//////////////////////////////// modal-image elements ///////////////////////////////////////////
+
 const preViewImageModal = document.querySelector("#preview__image_modal");
 
 const modalImageCloseButton = preViewImageModal.querySelector(
@@ -98,9 +96,7 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-//////////////////////////////////////Functions and EventListeners (add modal)////////////////////////////////////////////////////////////
-
-///// card class factory////////
+/// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
   const card = new Card(
@@ -112,6 +108,8 @@ function getCardView(cardData) {
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
+
+///submit functions  (add and edit)  ///
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // toma el name y link de los inputs
@@ -169,6 +167,8 @@ const editProfilePopup = new PopupWithForm(
 
 editProfilePopup.setEventListeners();
 
+/// UserInfo class ///
+
 const newUserInfo = new UserInfo({
   // llamo a la clase para usar los metodos
   nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
@@ -177,13 +177,10 @@ const newUserInfo = new UserInfo({
 
 const editProfileButton = document.querySelector("#profile__edit-button");
 editProfileButton.addEventListener("click", () => {
-  newUserInfo.setUserInfo();
+  const currentUser = newUserInfo.getUserInfo(); //usar la funcion que obtiene la info  y ponerla en una constante
 
-  // const currentName = profileTitle.textContent.trim();
-  // const currentDescription = profileDescription.textContent.trim();
-
-  // profileTitleInput.value = currentName;
-  // profileDescriptionInput.value = currentDescription;
+  profileTitleInput.value = currentUser.name.trim(); // usar el selector de los inputs, y ponerle la constante mas el parametro que se uso en la funcion de la clase
+  profileDescriptionInput.value = currentUser.job.trim();
 
   editProfilePopup.open();
 });
