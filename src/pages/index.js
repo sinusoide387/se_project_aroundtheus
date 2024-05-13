@@ -128,12 +128,6 @@ function handleAddFormSubmit(inputValues) {
   editProfilePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
 }
 
-const newUserInfo = new UserInfo({
-  // llamo a la clase para usar los metodos
-  nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
-  jobSelector: "#profile__description",
-});
-
 function handleEditSubmit(inputValues) {
   // una forma de resumir multiples parametros en uno solo
   const { title, description } = inputValues; // topa los valores del "name" property en los inputs
@@ -161,14 +155,11 @@ cardSection.renderItems();
 
 //// Popups in general /////
 
-const popup = new PopupWithForm({ popupSelector: ".modal" });
-
 const addPlaceButton = document.querySelector("#profile__add-button");
 addPlaceButton.addEventListener("click", () => {
   addPlacePopup.open(); //llamo el metodo open () cuando hago click en el boton. busco el boton y agrego eventlistener
 });
 
-popup.close();
 //// PopupWithForm class /////
 
 const editProfilePopup = new PopupWithForm(
@@ -178,13 +169,21 @@ const editProfilePopup = new PopupWithForm(
 
 editProfilePopup.setEventListeners();
 
+const newUserInfo = new UserInfo({
+  // llamo a la clase para usar los metodos
+  nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
+  jobSelector: "#profile__description",
+});
+
 const editProfileButton = document.querySelector("#profile__edit-button");
 editProfileButton.addEventListener("click", () => {
-  const currentName = profileTitle.textContent.trim();
-  const currentDescription = profileDescription.textContent.trim();
+  newUserInfo.setUserInfo();
 
-  profileTitleInput.value = currentName;
-  profileDescriptionInput.value = currentDescription;
+  // const currentName = profileTitle.textContent.trim();
+  // const currentDescription = profileDescription.textContent.trim();
+
+  // profileTitleInput.value = currentName;
+  // profileDescriptionInput.value = currentDescription;
 
   editProfilePopup.open();
 });

@@ -75,6 +75,7 @@
 }
 .modal__button:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .modal__close {
@@ -112,7 +113,8 @@
   border: none;
   /* cursor: pointer; */
 }
-.modal__image-close-button:hover {
+.modal__button:hover:not(:disabled) {
+  opacity: 0.8;
   cursor: pointer;
 }
 
