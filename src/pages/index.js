@@ -123,7 +123,7 @@ function handleAddFormSubmit(inputValues) {
   const cardElement = getCardView(cardData); // hago otra constante para agarrar la clase con el parametro o los valores
   cardSection.addItem(cardElement); // la cardList es un /ul en index.htm separa en una <section>
 
-  editProfilePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
+  addPlacePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
 }
 
 function handleEditSubmit(inputValues) {
@@ -133,8 +133,6 @@ function handleEditSubmit(inputValues) {
   newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
 
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
-
-  profileEditForm.reset();
 }
 
 const editFormValidation = new FormValidation(settings, profileEditForm);

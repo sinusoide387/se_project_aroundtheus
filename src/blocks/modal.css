@@ -73,10 +73,6 @@
 
   align-self: flex-end;
 }
-.modal__button:hover {
-  cursor: pointer;
-  opacity: 0.8;
-}
 
 .modal__close {
   background-image: url("../images/Close__Icon.svg");
