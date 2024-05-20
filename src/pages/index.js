@@ -1,3 +1,13 @@
+fetch("https://jsonplaceholder.typicode.com/todos/1", {
+  headers: {
+    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
+
 import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
