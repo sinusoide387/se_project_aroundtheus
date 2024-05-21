@@ -1,11 +1,15 @@
-fetch("https://jsonplaceholder.typicode.com/todos/1", {
+fetch("https://jsonplaceholder.typicode.com/users", {
+  method: "GET",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "ca29b9d7-c085-4996-bfd4-aa6f252bbde8",
   },
 })
   .then((res) => res.json())
   .then((result) => {
     console.log(result);
+  })
+  .catch((err) => {
+    console.log("got an error", err);
   });
 
 import { FormValidation } from "../components/FormValidation.js";
