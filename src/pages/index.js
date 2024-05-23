@@ -12,6 +12,7 @@ fetch("https://jsonplaceholder.typicode.com/users", {
     console.log("got an error", err);
   });
 
+import { Api } from "../components/Api.js";
 import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
@@ -109,6 +110,15 @@ const settings = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+/// API class ///
+
+const apiInstance = new Api({
+  baseUrl: " https://around-api.en.tripleten-services.com/v1.",
+  headers: "ca29b9d7-c085-4996-bfd4-aa6f252bbde8",
+});
+apiInstance.getInitialCards();
+
 
 /// card class factory////////
 function getCardView(cardData) {
