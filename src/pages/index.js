@@ -114,11 +114,14 @@ const settings = {
 /// API class ///
 
 const apiInstance = new Api({
-  baseUrl: " https://around-api.en.tripleten-services.com/v1.",
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: "ca29b9d7-c085-4996-bfd4-aa6f252bbde8",
 });
-apiInstance.getInitialCards();
 
+apiInstance
+  .getInitialCards()
+  .then((cards) => console.log(cards))
+  .catch((err) => console.error("I got an error:", err.message));
 
 /// card class factory////////
 function getCardView(cardData) {
