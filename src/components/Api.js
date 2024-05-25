@@ -54,4 +54,18 @@ export class Api {
     }
     throw new Error(`HTTP error! ${res.status}`);
   }
+  async addNewCard() {
+    const res = await fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._headers,
+        "Content-Type": this._contentType,
+      },
+      body: JSON.stringify({
+        name: "Paris",
+        link: "https://th.bing.com/th/id/OIP.TdxeGTYHWJgeNZPdFMjhzAAAAA?rs=1&pid=ImgDetMain",
+      }),
+    });
+  }
+  
 }

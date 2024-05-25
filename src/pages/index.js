@@ -128,6 +128,15 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
   })
   .catch((err) => console.log.error("I got an error:", err.message));
 
+apiInstance
+  .addNewCard()
+  .then((newCard) => {
+    console.log(newCard);
+  })
+  .catch((err) => {
+    console.log("I got an error:", err.message);
+  });
+
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
