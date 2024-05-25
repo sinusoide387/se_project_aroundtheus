@@ -16,10 +16,22 @@ export class Api {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
 
-      return await res.json(); // Return the parsed JSON
+      return await res.json(); // si pasa el error, devuelve la respuesta como JASON (objeto)
     } catch (err) {
+      // y sino devuelve un error
       console.error("I got an error:", err.message);
-      throw err; // Re-throw the error for further handling
+      throw err;
     }
+  }
+  async getUserInfo() {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._headers,
+      },
+    });
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(`HTTP error! ${res.status}`);
   }
 }

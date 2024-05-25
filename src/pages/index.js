@@ -111,7 +111,7 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-/// API class ///
+/// API classes ///
 
 const apiInstance = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -119,8 +119,19 @@ const apiInstance = new Api({
 });
 
 apiInstance
-  .getInitialCards()
-  .then((cards) => console.log(cards))
+  .getInitialCards() // methodo de api class para obtener las cards
+  .then((cards) => {
+    console.log(cards);
+    cardSection.renderItems(cards);
+  })
+  .catch((err) => console.error("I got an error:", err.message));
+
+apiInstance
+  .getUserInfo() // methodo de api para obtener el user
+  .then((userInfo) => {
+    console.log(userInfo);
+    newUserInfo.setUserInfo(userInfo.name, userInfo.about);
+  })
   .catch((err) => console.error("I got an error:", err.message));
 
 /// card class factory////////
@@ -129,6 +140,7 @@ function getCardView(cardData) {
   const card = new Card(
     cardData.name || cardData.Name,
     cardData.link || cardData.Link,
+
     "#card-template",
     handleImageClick
   );
