@@ -1,17 +1,3 @@
-fetch("https://jsonplaceholder.typicode.com/users", {
-  method: "GET",
-  headers: {
-    authorization: "ca29b9d7-c085-4996-bfd4-aa6f252bbde8",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.log("got an error", err);
-  });
-
 import { Api } from "../components/Api.js";
 import { FormValidation } from "../components/FormValidation.js";
 import { Card } from "../components/Card.js";
@@ -116,10 +102,11 @@ const settings = {
 const apiInstance = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: "ca29b9d7-c085-4996-bfd4-aa6f252bbde8",
+  contentType: "application/json",
 });
 
 apiInstance
-  .getInitialCards() // methodo de api class para obtener las cards
+  .getInitialCards() // metodo de api class para obtener las cards
   .then((cards) => {
     console.log(cards);
     cardSection.renderItems(cards);
@@ -127,12 +114,19 @@ apiInstance
   .catch((err) => console.error("I got an error:", err.message));
 
 apiInstance
-  .getUserInfo() // methodo de api para obtener el user
+  .getUserInfo() // metodo de api para obtener el user
   .then((userInfo) => {
     console.log(userInfo);
     newUserInfo.setUserInfo(userInfo.name, userInfo.about);
   })
   .catch((err) => console.error("I got an error:", err.message));
+
+apiInstance // llamo al metodo de la api class para actualizar el usuario
+  .editProfile()
+  .then((userUpdate) => {
+    console.log(userUpdate);
+  })
+  .catch((err) => console.log.error("I got an error:", err.message));
 
 /// card class factory////////
 function getCardView(cardData) {
@@ -154,7 +148,7 @@ function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // toma el name y link de los inputs
 
   const cardData = {
-    // genero una constante que va a pasar como parametro de la lcase abajo
+    // genero una constante que va a pasar como parametro de la clase abajo
     name: name,
     link: link,
   };
@@ -186,7 +180,6 @@ const cardSection = new Section(
   { items: initialCards, renderer: getCardView },
   ".cards__list"
 );
-cardSection.renderItems();
 
 //// Popups in general /////
 

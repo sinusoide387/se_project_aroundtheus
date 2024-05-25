@@ -1,12 +1,14 @@
 export class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, headers, contentType }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._contentType = contentType;
   }
 
   async getInitialCards() {
     try {
       const res = await fetch(`${this._baseUrl}/cards`, {
+        method: "GET",
         headers: {
           authorization: this._headers,
         },
@@ -29,6 +31,23 @@ export class Api {
       headers: {
         authorization: this._headers,
       },
+    });
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(`HTTP error! ${res.status}`);
+  }
+  async editProfile() {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._headers,
+        "Content-Type": this._contentType,
+      },
+      body: JSON.stringify({
+        name: "Franco Mateo Turco",
+        about: "Software Engineer",
+      }),
     });
     if (res.ok) {
       return res.json();
