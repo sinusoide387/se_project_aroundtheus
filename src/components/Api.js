@@ -25,6 +25,7 @@ export class Api {
   }
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
       headers: {
         authorization: this._headers,
       },
