@@ -241,14 +241,3 @@ function handleImageClick(cardData) {
 }
 
 popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
-
-// const deleteCardPopup = document.querySelector("#delette__card-modal");
-
-// const deleteCardButton = document.querySelectorAll(".card__delete-button");
-// console.log(deleteCardButton);
-
-// deleteCardButton.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     deleteCardPopup.classList.add("modal_opened");
-//   });
-// });

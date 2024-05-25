@@ -40,7 +40,7 @@ export class Card {
   _setDeleteEventListener() {
     // este metodo le pone el eventlistener al boton :"yes".
     const deleteModal = document.querySelector("#delete__card-modal"); // hago una const para el modal
-    const deleteButton = deleteModal.querySelector(".delete__card-button"); // hago otra para el boton dentro del modal
+    const deleteButton = deleteModal.querySelector("#delete__card-button"); // hago otra para el boton dentro del modal
 
     deleteButton.addEventListener("click", () => {
       // al boton ("yes") le agrego el event listener
