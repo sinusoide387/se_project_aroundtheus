@@ -41,6 +41,7 @@ const initialCards = [
   cardData6,
 ];
 
+
 const profileEditButton = document.querySelector("#profile__edit-button");
 
 const profileEditModal = document.querySelector("#profile__edit-modal");
