@@ -54,18 +54,32 @@ export class Api {
     }
     throw new Error(`HTTP error! ${res.status}`);
   }
-  async addNewCard() {
+  async addNewCard(name, link) {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this._headers,
-        "Content-Type": this._contentType,
-      },
+      headers: this._headers,
+
       body: JSON.stringify({
-        name: "Paris",
-        link: "https://th.bing.com/th/id/OIP.TdxeGTYHWJgeNZPdFMjhzAAAAA?rs=1&pid=ImgDetMain",
+        name: name,
+        link: link,
       }),
     });
+    if (!res.ok) {
+      throw new Error(`Error: ${res.status}`);
+    }
+    const cardData = await res.json();
+    console.log("New card added:", cardData);
+    return cardData;
   }
-  
+  async deleteCard(cardId) {
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._headers,
+      },
+    });
+  }
+  async addLikes(){
+    const res = await fetch(`${this._baseUrl}`)
+  }
 }

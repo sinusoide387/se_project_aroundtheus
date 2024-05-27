@@ -1,9 +1,16 @@
 export class Card {
-  constructor(name, link, cardSelector, handleImageClick) {
+  constructor(
+    { name, link, _id },
+    cardSelector,
+    handleImageClick,
+    handleDelete
+  ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDelete = handleDelete;
+    this._id = _id;
   }
   ///////event listeners///////
   _setEventListeners() {
@@ -24,11 +31,12 @@ export class Card {
     this._cardElement
       .querySelector(".card__delete-button") // selecciono el icono del basurero
       .addEventListener("click", () => {
+        this._handleDelete(this._id);
         // le agrego el eventlistener click
-        document
-          .querySelector("#delete__card-modal") // selecciono el modal (are you sure?)
-          .classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
-        this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
+        // document
+        //   .querySelector("#delete__card-modal") // selecciono el modal (are you sure?)
+        //   .classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
+        // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
       });
   }
   ////////handlers//////////
@@ -44,7 +52,7 @@ export class Card {
 
     deleteButton.addEventListener("click", () => {
       // al boton ("yes") le agrego el event listener
-      this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
+      // this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
       deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
     });
   }

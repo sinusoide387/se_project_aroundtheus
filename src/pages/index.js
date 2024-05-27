@@ -6,6 +6,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
+import { ids } from "webpack";
 
 const cardData1 = {
   name: "Yosemite Valley",
@@ -140,13 +141,9 @@ apiInstance
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const card = new Card(
-    cardData.name || cardData.Name,
-    cardData.link || cardData.Link,
-
-    "#card-template",
-    handleImageClick
-  );
+  const card = new Card(cardData, "#card-template", handleImageClick, (id) => {
+    console.log(id);
+  });
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }

@@ -56,4 +56,13 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
   ],
+  resolve: {
+    fallback: {
+      path: require.resolve("path-browserify"),
+      url: require.resolve("url/"),
+      stream: require.resolve("stream-browserify"),
+      assert: require.resolve("assert/"),
+      util: require.resolve("util/"),
+    },
+  },
 };
