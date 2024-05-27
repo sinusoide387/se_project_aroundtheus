@@ -1,4 +1,3 @@
-// webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -51,18 +50,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      favicon: "./src/images/favicon.ico",
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
   ],
-  resolve: {
-    fallback: {
-      path: require.resolve("path-browserify"),
-      url: require.resolve("url/"),
-      stream: require.resolve("stream-browserify"),
-      assert: require.resolve("assert/"),
-      util: require.resolve("util/"),
-    },
-  },
 };

@@ -6,7 +6,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
-import { ids } from "webpack";
+// import { ids } from "webpack";
 
 const cardData1 = {
   name: "Yosemite Valley",
