@@ -1,3 +1,5 @@
+import { ids } from "webpack";
+
 export class Card {
   constructor(
     { name, link, _id },
@@ -9,7 +11,7 @@ export class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    this._handleDelete = handleDelete;
+    // this._handleDelete = handleDelete;
     this._id = _id;
   }
   ///////event listeners///////
@@ -31,7 +33,7 @@ export class Card {
     this._cardElement
       .querySelector(".card__delete-button") // selecciono el icono del basurero
       .addEventListener("click", () => {
-        this._handleDelete(this._id);
+        this._handleDeleteButton(this._id);
         // le agrego el eventlistener click
         // document
         //   .querySelector("#delete__card-modal") // selecciono el modal (are you sure?)
@@ -52,14 +54,14 @@ export class Card {
 
     deleteButton.addEventListener("click", () => {
       // al boton ("yes") le agrego el event listener
-      // this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
+      this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
       deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
     });
   }
 
-  _handleDeleteButton() {
+  _handleDeleteButton(_id) {
     // esta es la funcion basica que remueve la carta
-    this._cardElement.remove();
+    this._cardElement.remove(_id);
     this._cardElement = null;
   }
   ///////function to render the cards///////

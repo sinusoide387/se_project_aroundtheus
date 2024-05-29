@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development",
-    "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build"
+    "dev": "webpack serve --mode development "
   },
   "keywords": [],
   "author": "Elise Bouer",
@@ -28,7 +26,6 @@
     "webpack-dev-server": "4.9.3"
   },
   "dependencies": {
-    "core-js": "3.23.5",
-    "path-browserify": "^1.0.1"
+    "core-js": "3.23.5"
   }
 }
