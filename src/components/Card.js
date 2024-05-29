@@ -1,5 +1,3 @@
-import { ids } from "webpack";
-
 export class Card {
   constructor(
     { name, link, _id },
