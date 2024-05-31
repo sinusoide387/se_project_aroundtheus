@@ -58,19 +58,17 @@ export class Api {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-
       body: JSON.stringify({
         name: name,
         link: link,
       }),
     });
-    if (!res.ok) {
-      throw new Error(`Error: ${res.status}`);
+    if (res.ok) {
+      return res.json();
     }
-    const cardData = await res.json();
-    console.log("New card added:", cardData);
-    return cardData;
+    throw new Error(`HTTP error! ${res.status}`);
   }
+
   async deleteCard(cardId) {
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
@@ -79,7 +77,7 @@ export class Api {
       },
     });
   }
-  async addLikes(){
-    const res = await fetch(`${this._baseUrl}`)
+  async addLikes() {
+    const res = await fetch(`${this._baseUrl}`);
   }
 }

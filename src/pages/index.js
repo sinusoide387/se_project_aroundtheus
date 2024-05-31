@@ -8,39 +8,39 @@ import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
 // import { ids } from "webpack";
 
-const cardData1 = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-const cardData2 = {
-  name: "Lake Louise",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-};
-const cardData3 = {
-  name: "Bald Mountains",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-};
-const cardData4 = {
-  name: "Latemar",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-};
-const cardData5 = {
-  name: "Vanoise National Park",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-};
-const cardData6 = {
-  name: "Lago di Braies",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-};
+// const cardData1 = {
+//   name: "Yosemite Valley",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+// };
+// const cardData2 = {
+//   name: "Lake Louise",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+// };
+// const cardData3 = {
+//   name: "Bald Mountains",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+// };
+// const cardData4 = {
+//   name: "Latemar",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+// };
+// const cardData5 = {
+//   name: "Vanoise National Park",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+// };
+// const cardData6 = {
+//   name: "Lago di Braies",
+//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+// };
 
-const initialCards = [
-  cardData1,
-  cardData2,
-  cardData3,
-  cardData4,
-  cardData5,
-  cardData6,
-];
+// const initialCards = [
+//   cardData1,
+//   cardData2,
+//   cardData3,
+//   cardData4,
+//   cardData5,
+//   cardData6,
+// ];
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 
@@ -109,6 +109,7 @@ const apiInstance = new Api({
 apiInstance
   .getInitialCards() // metodo de api class para obtener las cards
   .then((cards) => {
+    // puse cards, pero tambien se usa "res"de respuesta
     console.log(cards);
     cardSection.renderItems(cards);
   })
@@ -152,6 +153,15 @@ function getCardView(cardData) {
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // toma el name y link de los inputs
+  apiInstance
+    .addNewCard(name, link)
+    .then((newCard) => {
+      console.log(newCard);
+      // add new card to the page
+    })
+    .catch((err) => {
+      console.log("I got an error:", err.message);
+    });
 
   const cardData = {
     // genero una constante que va a pasar como parametro de la clase abajo
@@ -182,10 +192,7 @@ addFormValidation.enableValidation();
 
 //// Section class/////
 
-const cardSection = new Section(
-  { items: initialCards, renderer: getCardView },
-  ".cards__list"
-);
+const cardSection = new Section({ renderer: getCardView }, ".cards__list");
 
 //// Popups in general /////
 
