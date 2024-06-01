@@ -69,13 +69,19 @@ export class Api {
     throw new Error(`HTTP error! ${res.status}`);
   }
 
-  async deleteCard(cardId) {
-    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
+  async deleteCard(cardID) {
+    const res = await fetch(`${this._baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: {
         authorization: this._headers,
       },
     });
+    if (!res.ok) {
+      const errorMessage = await res.text();
+      throw new Error(
+        `Failed to delete card with id ${_id}: ${res.status} ${res.statusText} - ${errorMessage}`
+      );
+    }
   }
   async addLikes() {
     const res = await fetch(`${this._baseUrl}`);

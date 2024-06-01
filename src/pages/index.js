@@ -115,13 +115,13 @@ apiInstance
   })
   .catch((err) => console.error("I got an error:", err.message));
 
-apiInstance
-  .getUserInfo() // metodo de api para obtener el user
-  .then((userInfo) => {
-    console.log(userInfo);
-    newUserInfo.setUserInfo(userInfo.name, userInfo.about);
-  })
-  .catch((err) => console.error("I got an error:", err.message));
+// apiInstance
+//   .getUserInfo() // metodo de api para obtener el user
+//   .then((userInfo) => {
+//     console.log(userInfo);
+//     newUserInfo.setUserInfo(userInfo.name, userInfo.about);
+//   })
+//   .catch((err) => console.error("I got an error:", err.message));
 
 apiInstance // llamo al metodo de la api class para actualizar el usuario
   .editProfile()
@@ -142,8 +142,9 @@ apiInstance
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const card = new Card(cardData, "#card-template", handleImageClick, (id) => {
-    console.log(id);
+  const card = new Card(cardData, "#card-template", handleImageClick, (_id) => {
+    console.log(_id);
+    apiInstance.deleteCard(_id);
   });
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
@@ -180,7 +181,13 @@ function handleEditSubmit(inputValues) {
   const { title, description } = inputValues; // topa los valores del "name" property en los inputs
 
   newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
-
+  apiInstance
+    .getUserInfo() // metodo de api para obtener el user
+    .then((userInfo) => {
+      console.log(userInfo);
+      newUserInfo.setUserInfo(title, description);
+    })
+    .catch((err) => console.error("I got an error:", err.message));
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 }
 

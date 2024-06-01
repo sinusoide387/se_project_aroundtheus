@@ -35,10 +35,9 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDelete(this._id);
         // le agrego el eventlistener click
-        // document
-        //   .querySelector("#delete__card-modal") // selecciono el modal (are you sure?)
-        //   .classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
-        // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
+        // const deletePopup = document.querySelector("#delete__card-modal"); // selecciono el modal (are you sure?)
+        // deletePopup.classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
+        this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
       });
   }
   ////////handlers//////////
