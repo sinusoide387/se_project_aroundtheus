@@ -69,8 +69,8 @@ export class Api {
     throw new Error(`HTTP error! ${res.status}`);
   }
 
-  async deleteCard(cardID) {
-    const res = await fetch(`${this._baseUrl}/cards/${cardID}`, {
+  async deleteCard(_id) {
+    const res = await fetch(`${this._baseUrl}/cards/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: this._headers,
@@ -79,7 +79,7 @@ export class Api {
     if (!res.ok) {
       const errorMessage = await res.text();
       throw new Error(
-        `Failed to delete card with id ${_id}: ${res.status} ${res.statusText} - ${errorMessage}`
+        `Failed to delete card with id ${cardId}: ${res.status} ${res.statusText} - ${errorMessage}`
       );
     }
   }

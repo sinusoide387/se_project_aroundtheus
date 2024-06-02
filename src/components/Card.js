@@ -33,11 +33,17 @@ export class Card {
     this._cardElement
       .querySelector(".card__delete-button") // selecciono el icono del basurero
       .addEventListener("click", () => {
-        this._handleDelete(this._id);
+        this._handleDelete(this._id) // se tiene que eliminar primero la card del API usando el _id
+          .then(() => {
+            this._handleDeleteButton; // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
+          })
+          .catch((err) => {
+            console.error(`failed to delete the card with: ${this._id}`, err);
+          });
         // le agrego el eventlistener click
         // const deletePopup = document.querySelector("#delete__card-modal"); // selecciono el modal (are you sure?)
         // deletePopup.classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
-        this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
+        // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
       });
   }
   ////////handlers//////////
@@ -46,17 +52,17 @@ export class Card {
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   }
-  _setDeleteEventListener() {
-    // este metodo le pone el eventlistener al boton :"yes".
-    const deleteModal = document.querySelector("#delete__card-modal"); // hago una const para el modal
-    const deleteButton = deleteModal.querySelector("#delete__card-button"); // hago otra para el boton dentro del modal
+  // _setDeleteEventListener() {
+  //   // este metodo le pone el eventlistener al boton :"yes".
+  //   const deleteModal = document.querySelector("#delete__card-modal"); // hago una const para el modal
+  //   const deleteButton = deleteModal.querySelector("#delete__card-button"); // hago otra para el boton dentro del modal
 
-    deleteButton.addEventListener("click", () => {
-      // al boton ("yes") le agrego el event listener
-      this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
-      deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
-    });
-  }
+  //   deleteButton.addEventListener("click", () => {
+  //     // al boton ("yes") le agrego el event listener
+  //     this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
+  //     deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
+  //   });
+  // }
 
   _handleDeleteButton() {
     // esta es la funcion basica que remueve la carta
