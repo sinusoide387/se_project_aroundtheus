@@ -57,7 +57,10 @@ export class Api {
   async addNewCard(name, link) {
     const res = await fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: this._headers,
+        "Content-Type": this._contentType,
+      },
       body: JSON.stringify({
         name: name,
         link: link,

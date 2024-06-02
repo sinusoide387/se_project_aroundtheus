@@ -130,14 +130,7 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
   })
   .catch((err) => console.log.error("I got an error:", err.message));
 
-apiInstance
-  .addNewCard()
-  .then((newCard) => {
-    console.log(newCard);
-  })
-  .catch((err) => {
-    console.log("I got an error:", err.message);
-  });
+
 
 /// card class factory////////
 function getCardView(cardData) {
@@ -152,27 +145,22 @@ function getCardView(cardData) {
 ///submit functions  (add and edit)  ///
 
 function handleAddFormSubmit(inputValues) {
-  const { name, link } = inputValues; // toma el name y link de los inputs
+  const { name, link } = inputValues; // Extract name and link from input values
+
   apiInstance
-    .addNewCard(name, link)
+    .addNewCard(name, link) // toma el name y el link
     .then((newCard) => {
+      // newCard es la respuesta y contiene el name y link
       console.log(newCard);
-      // add new card to the page
+
+      const cardElement = getCardView(newCard); // usamos esa respuesta y la ponemos en una constante junto con la funcion que genera la carta
+      cardSection.addItem(cardElement); // mandamos la carta recien creada con la info de API al browser o UI
+
+      addPlacePopup.close(); // cerramos el popup
     })
     .catch((err) => {
       console.log("I got an error:", err.message);
     });
-
-  const cardData = {
-    // genero una constante que va a pasar como parametro de la clase abajo
-    name: name,
-    link: link,
-  };
-
-  const cardElement = getCardView(cardData); // hago otra constante para agarrar la clase con el parametro o los valores
-  cardSection.addItem(cardElement); // la cardList es un /ul en index.htm separa en una <section>
-
-  addPlacePopup.close(); // llamo al cerrado con la constante de la clase que genere la close()
 }
 
 function handleEditSubmit(inputValues) {

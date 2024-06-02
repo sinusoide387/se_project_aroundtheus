@@ -35,7 +35,7 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDelete(this._id) // se tiene que eliminar primero la card del API usando el _id
           .then(() => {
-            this._handleDeleteButton; // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
+            this._handleDeleteButton(); // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
           })
           .catch((err) => {
             console.error(`failed to delete the card with: ${this._id}`, err);
