@@ -1,5 +1,5 @@
 // import { Api } from "./Api";
-
+import { PopupDelete } from "./PopupDelete";
 export class Card {
   constructor(
     { name, link, _id },
@@ -31,20 +31,25 @@ export class Card {
         this._handleLikeButton(); // esto va a llamar al handler para agregar o quitar la clase.
       });
     this._cardElement
-      .querySelector(".card__delete-button") // selecciono el icono del basurero
+      .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._handleDelete(this._id) // se tiene que eliminar primero la card del API usando el _id
-          .then(() => {
-            this._handleDeleteButton(); // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
-          })
-          .catch((err) => {
-            console.error(`failed to delete the card with: ${this._id}`, err);
-          });
-        // le agrego el eventlistener click
-        // const deletePopup = document.querySelector("#delete__card-modal"); // selecciono el modal (are you sure?)
-        // deletePopup.classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
-        // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
+        this._openDeletePopup();
       });
+
+    // this._cardElement
+    //   .querySelector(".card__delete-button") // selecciono el icono del basurero
+    //   .addEventListener("click", () => {
+    //     this._handleDelete(this._id) // se tiene que eliminar primero la card del API usando el _id
+    //       .then(() => {
+    //         this._handleDeleteButton(); // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
+    //       })
+    //       .catch((err) => {
+    //         console.error(`failed to delete the card with: ${this._id}`, err);
+    //       });
+    // le agrego el eventlistener click
+    // const deletePopup = document.querySelector("#delete__card-modal"); // selecciono el modal (are you sure?)
+    // deletePopup.classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
+    // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
   }
   ////////handlers//////////
   _handleLikeButton() {
@@ -63,6 +68,25 @@ export class Card {
   //     deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
   //   });
   // }
+  _openDeletePopup() {
+    const deletePopup = new PopupDelete(
+      { popupSelector: "#delete__card-modal" },
+      () =>
+        this._handleDelete(this._id)
+          .then(() => {
+            this._handleDeleteButton();
+            deletePopup.close();
+          })
+          .catch((err) => {
+            console.error(
+              `Failed to delete the card with id: ${this._id}`,
+              err
+            );
+          })
+    );
+    deletePopup.setEventListeners();
+    deletePopup.open();
+  }
 
   _handleDeleteButton() {
     // esta es la funcion basica que remueve la carta

@@ -6,6 +6,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
+import { PopupDelete } from "../components/PopupDelete.js";
 // import { ids } from "webpack";
 
 // const cardData1 = {
@@ -129,8 +130,6 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
     console.log(userUpdate);
   })
   .catch((err) => console.log.error("I got an error:", err.message));
-
-
 
 /// card class factory////////
 function getCardView(cardData) {
