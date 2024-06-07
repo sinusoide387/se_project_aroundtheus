@@ -36,7 +36,7 @@ export class Card {
     this._cardElement
       .querySelector(".card__delete-button")
       .addEventListener("click", () => {
-        this._openDeletePopup();
+        this._handleDelete();
       });
 
     // this._cardElement
@@ -62,22 +62,6 @@ export class Card {
   }
 
   _openDeletePopup() {
-    const deletePopup = new PopupDelete(
-      { popupSelector: "#delete__card-modal" },
-      () =>
-        this._handleDelete(this._id)
-          .then(() => {
-            this._handleDeleteButton();
-            deletePopup.close();
-          })
-          .catch((err) => {
-            console.error(
-              `Failed to delete the card with id: ${this._id}`,
-              err
-            );
-          })
-    );
-    deletePopup.setEventListeners();
     deletePopup.open();
   }
 
@@ -105,5 +89,9 @@ export class Card {
     this._setEventListeners(); //funcion que llama los eventlisteners
 
     return this._cardElement; // y al ultimo devolvemos la card completa asi va donde exportamos esta clase.
+  }
+
+  getCardId() {
+    return this._id;
   }
 }

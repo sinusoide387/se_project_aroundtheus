@@ -138,14 +138,25 @@ function getCardView(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    (cardId) => {
-      console.log(`Attempting to delete card with ID: ${cardId}`); 
-      return apiInstance.deleteCard(cardId);
+    (card) => {
+      deletePopup.open();
+      card.getCardId();
     }
   );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
+
+const deletePopup = new PopupDelete(
+  { popupSelector: "#delete__card-modal" },
+  (cardId) => {
+    apiInstance.deleteCard(cardId).then(() => {
+      console.log("message");
+    });
+  }
+);
+
+deletePopup.setEventListeners();
 
 ///submit functions  (add and edit)  ///
 
