@@ -6,14 +6,17 @@ export class Card {
     cardSelector,
     handleImageClick,
     handleDelete
+    // handleLikeToggle
   ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDelete = handleDelete;
+
     this._id = _id;
   }
+
   ///////event listeners///////
   _setEventListeners() {
     this._cardElement
@@ -57,17 +60,7 @@ export class Card {
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   }
-  // _setDeleteEventListener() {
-  //   // este metodo le pone el eventlistener al boton :"yes".
-  //   const deleteModal = document.querySelector("#delete__card-modal"); // hago una const para el modal
-  //   const deleteButton = deleteModal.querySelector("#delete__card-button"); // hago otra para el boton dentro del modal
 
-  //   deleteButton.addEventListener("click", () => {
-  //     // al boton ("yes") le agrego el event listener
-  //     this._handleDeleteButton(); // cuando hace click llama a la funcion para que borre la card
-  //     deleteModal.classList.remove("modal_opened"); // y remueve el modal tambien
-  //   });
-  // }
   _openDeletePopup() {
     const deletePopup = new PopupDelete(
       { popupSelector: "#delete__card-modal" },
@@ -89,9 +82,10 @@ export class Card {
   }
 
   _handleDeleteButton() {
-    // esta es la funcion basica que remueve la carta
-    this._cardElement.remove();
-    this._cardElement = null;
+    if (this._element) {
+      this._element.remove();
+      this._element = null;
+    }
   }
   ///////function to render the cards///////
   getView() {

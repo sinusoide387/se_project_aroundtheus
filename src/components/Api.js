@@ -72,8 +72,9 @@ export class Api {
     throw new Error(`HTTP error! ${res.status}`);
   }
 
-  async deleteCard(_id) {
-    const res = await fetch(`${this._baseUrl}/cards/${_id}`, {
+  async deleteCard(cardId) {
+    console.log(`Deleting card with ID: ${cardId}`);
+    const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
         authorization: this._headers,
@@ -86,7 +87,22 @@ export class Api {
       );
     }
   }
-  async addLikes() {
-    const res = await fetch(`${this._baseUrl}`);
+  async addLikes(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: this._headers,
+      },
+    }).then((res) =>
+      res.ok ? res.json : Promise.reject(`Error: ${res.status}`)
+    );
+  }
+  async removeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) =>
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+    );
   }
 }

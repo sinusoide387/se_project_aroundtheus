@@ -134,9 +134,15 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const card = new Card(cardData, "#card-template", handleImageClick, (_id) => {
-    return apiInstance.deleteCard(_id);
-  });
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    (cardId) => {
+      console.log(`Attempting to delete card with ID: ${cardId}`); 
+      return apiInstance.deleteCard(cardId);
+    }
+  );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
 }
