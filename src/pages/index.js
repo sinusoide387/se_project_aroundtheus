@@ -140,7 +140,12 @@ function getCardView(cardData) {
     handleImageClick,
     (card) => {
       deletePopup.open();
-      card.getCardId();
+      deletePopup.setSubmitAction(() => {
+        apiInstance.deleteCard(card.getCardId()).then(() => {
+          card._handleDeleteButton();
+          deletePopup.close();
+        });
+      });
     }
   );
 
