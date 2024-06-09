@@ -1,19 +1,17 @@
-// import { Api } from "./Api";
-import { PopupDelete } from "./PopupDelete";
 export class Card {
   constructor(
     { name, link, _id },
     cardSelector,
     handleImageClick,
-    handleDelete
-    // handleLikeToggle
+    handleDelete,
+    handleLikeToggle
   ) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDelete = handleDelete;
-
+    this._handleLikeToggle = handleLikeToggle;
     this._id = _id;
   }
 

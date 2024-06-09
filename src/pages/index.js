@@ -92,7 +92,7 @@ function handleDelete(card) {
   // funcion que integra el popup con el api request class, y la uso en la card class
   deletePopup.open(); // abre el popup
   deletePopup.setSubmitAction(() => {
-    // llamo a la funcion, esta funcion actua como coneccion entre popup, el request y la card en si
+    // llamo a la funcion, esta funcion actua como conexion entre popup, el request y la card en si
     const cardId = card.getCardId();
     apiInstance
       .deleteCard(cardId) // primero lo borro con el request
@@ -106,11 +106,28 @@ function handleDelete(card) {
   });
 }
 
+function handleLikes(card) {
+  const cardId = card.getCardId();
+  console.log(`this is the id`, cardId);
+  apiInstance
+    .addLikes(cardId)
+    .then(() => {
+      card._handleLikeButton();
+    })
+    .catch((err) => {
+      console.error(`Failed to delete card with ID ${cardId}:`, err.message);
+    });
+}
+
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const card = new Card(cardData, "#card-template", handleImageClick, () =>
-    handleDelete(card)
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    () => handleDelete(card),
+    () => handleLikes(card)
   );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
