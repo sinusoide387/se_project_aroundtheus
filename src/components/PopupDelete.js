@@ -5,7 +5,7 @@ export class PopupDelete extends Popup {
     super({ popupSelector });
     this._popupDelete = document.querySelector("#delete__card-modal");
     this._deleteButton = document.querySelector("#delete__card-button");
-    this._handleSubmit = this._handleSubmit;
+    this._handleSubmit = handleDelete;
     // this.handleDelete = handleDelete;
   }
 

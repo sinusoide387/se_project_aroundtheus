@@ -131,6 +131,22 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
   })
   .catch((err) => console.log.error("I got an error:", err.message));
 
+function handleDelete(card) {
+  deletePopup.open();
+  deletePopup.setSubmitAction(() => {
+    const cardId = card.getCardId();
+    apiInstance
+      .deleteCard(cardId)
+      .then(() => {
+        card._handleDeleteButton();
+        deletePopup.close();
+      })
+      .catch((err) => {
+        console.error(`Failed to delete card with ID ${cardId}:`, err.message);
+      });
+  });
+}
+
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
@@ -138,15 +154,24 @@ function getCardView(cardData) {
     cardData,
     "#card-template",
     handleImageClick,
-    (card) => {
-      deletePopup.open();
-      deletePopup.setSubmitAction(() => {
-        apiInstance.deleteCard(card.getCardId()).then(() => {
-          card._handleDeleteButton();
-          deletePopup.close();
-        });
-      });
-    }
+    () => handleDelete(card)
+    // (card) => {
+    //   deletePopup.open();
+    //   deletePopup.setSubmitAction(() => {
+    //     const cardId = card.getCardId();
+    //     console.log(`Card ID to delete: ${cardId}`);
+    //     apiInstance
+    //       .deleteCard(cardId)
+    //       .then(() => {
+    //         card._handleDeleteButton();
+
+    //         deletePopup.close();
+    //       })
+    //       .catch((err) => {
+    //         console.error(`got an error`, err.message);
+    //       });
+    //   });
+    // }
   );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion

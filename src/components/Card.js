@@ -17,6 +17,10 @@ export class Card {
     this._id = _id;
   }
 
+  getCardId() {
+    return this._id;
+  }
+
   ///////event listeners///////
   _setEventListeners() {
     this._cardElement
@@ -38,21 +42,6 @@ export class Card {
       .addEventListener("click", () => {
         this._handleDelete();
       });
-
-    // this._cardElement
-    //   .querySelector(".card__delete-button") // selecciono el icono del basurero
-    //   .addEventListener("click", () => {
-    //     this._handleDelete(this._id) // se tiene que eliminar primero la card del API usando el _id
-    //       .then(() => {
-    //         this._handleDeleteButton(); // y despues se usa la funcion para eliminar la card del DOM si la respuesta anterior fue positiva
-    //       })
-    //       .catch((err) => {
-    //         console.error(`failed to delete the card with: ${this._id}`, err);
-    //       });
-    // le agrego el eventlistener click
-    // const deletePopup = document.querySelector("#delete__card-modal"); // selecciono el modal (are you sure?)
-    // deletePopup.classList.add("modal_opened"); // le agrego la clase que tiene el display:visible
-    // this._setDeleteEventListener(); // llamo a la funcion que se encarga de borrar la card (mas abajo esta hecha)
   }
   ////////handlers//////////
   _handleLikeButton() {
@@ -66,10 +55,8 @@ export class Card {
   }
 
   _handleDeleteButton() {
-    if (this._element) {
-      this._element.remove();
-      this._element = null;
-    }
+    this._cardElement.remove();
+    this._cardElement = null;
   }
   ///////function to render the cards///////
   getView() {
@@ -89,9 +76,5 @@ export class Card {
     this._setEventListeners(); //funcion que llama los eventlisteners
 
     return this._cardElement; // y al ultimo devolvemos la card completa asi va donde exportamos esta clase.
-  }
-
-  getCardId() {
-    return this._id;
   }
 }
