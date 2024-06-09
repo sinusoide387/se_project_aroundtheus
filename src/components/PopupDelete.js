@@ -6,7 +6,7 @@ export class PopupDelete extends Popup {
     this._popupDelete = document.querySelector("#delete__card-modal");
     this._deleteButton = document.querySelector("#delete__card-button");
     this._handleSubmit = handleDelete;
-    // this.handleDelete = handleDelete;
+    
   }
 
   setSubmitAction(action) {
@@ -19,7 +19,7 @@ export class PopupDelete extends Popup {
       this._deleteButton.addEventListener("click", (event) => {
         event.preventDefault;
         this._handleSubmit();
-        // this.handleDelete();
+        
       });
     } else {
       console.error("Delete button not found.");

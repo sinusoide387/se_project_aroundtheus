@@ -55,6 +55,7 @@ export class Card {
   }
 
   _handleDeleteButton() {
+    //funcion que hace el borrado
     this._cardElement.remove();
     this._cardElement = null;
   }

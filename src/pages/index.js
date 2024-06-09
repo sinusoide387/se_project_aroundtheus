@@ -7,41 +7,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupDelete } from "../components/PopupDelete.js";
-// import { ids } from "webpack";
-
-// const cardData1 = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
-// const cardData2 = {
-//   name: "Lake Louise",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-// };
-// const cardData3 = {
-//   name: "Bald Mountains",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-// };
-// const cardData4 = {
-//   name: "Latemar",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-// };
-// const cardData5 = {
-//   name: "Vanoise National Park",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-// };
-// const cardData6 = {
-//   name: "Lago di Braies",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-// };
-
-// const initialCards = [
-//   cardData1,
-//   cardData2,
-//   cardData3,
-//   cardData4,
-//   cardData5,
-//   cardData6,
-// ];
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 
@@ -116,14 +81,6 @@ apiInstance
   })
   .catch((err) => console.error("I got an error:", err.message));
 
-// apiInstance
-//   .getUserInfo() // metodo de api para obtener el user
-//   .then((userInfo) => {
-//     console.log(userInfo);
-//     newUserInfo.setUserInfo(userInfo.name, userInfo.about);
-//   })
-//   .catch((err) => console.error("I got an error:", err.message));
-
 apiInstance // llamo al metodo de la api class para actualizar el usuario
   .editProfile()
   .then((userUpdate) => {
@@ -132,14 +89,16 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
   .catch((err) => console.log.error("I got an error:", err.message));
 
 function handleDelete(card) {
-  deletePopup.open();
+  // funcion que integra el popup con el api request class, y la uso en la card class
+  deletePopup.open(); // abre el popup
   deletePopup.setSubmitAction(() => {
+    // llamo a la funcion, esta funcion actua como coneccion entre popup, el request y la card en si
     const cardId = card.getCardId();
     apiInstance
-      .deleteCard(cardId)
+      .deleteCard(cardId) // primero lo borro con el request
       .then(() => {
-        card._handleDeleteButton();
-        deletePopup.close();
+        card._handleDeleteButton(); //luego la respuesta hace que active la funcion para borrarla fisicamente
+        deletePopup.close(); // cierra el popup luego de borrar la card
       })
       .catch((err) => {
         console.error(`Failed to delete card with ID ${cardId}:`, err.message);
@@ -150,28 +109,8 @@ function handleDelete(card) {
 /// card class factory////////
 function getCardView(cardData) {
   // cree una nueva funcion para asi poder sacar la clase con el objeto y usarla donde quiero generar cards, como el summit eventlistener.
-  const card = new Card(
-    cardData,
-    "#card-template",
-    handleImageClick,
-    () => handleDelete(card)
-    // (card) => {
-    //   deletePopup.open();
-    //   deletePopup.setSubmitAction(() => {
-    //     const cardId = card.getCardId();
-    //     console.log(`Card ID to delete: ${cardId}`);
-    //     apiInstance
-    //       .deleteCard(cardId)
-    //       .then(() => {
-    //         card._handleDeleteButton();
-
-    //         deletePopup.close();
-    //       })
-    //       .catch((err) => {
-    //         console.error(`got an error`, err.message);
-    //       });
-    //   });
-    // }
+  const card = new Card(cardData, "#card-template", handleImageClick, () =>
+    handleDelete(card)
   );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion
@@ -180,13 +119,15 @@ function getCardView(cardData) {
 const deletePopup = new PopupDelete(
   { popupSelector: "#delete__card-modal" },
   (cardId) => {
+    // esto actua toma el lugar del "handleDelete" de la PopupDelete class
     apiInstance.deleteCard(cardId).then(() => {
+      //aca usa el request del servidor para borrar la carta pasando el _id
       console.log("message");
     });
   }
 );
 
-deletePopup.setEventListeners();
+deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas las clases
 
 ///submit functions  (add and edit)  ///
 

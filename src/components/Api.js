@@ -73,6 +73,7 @@ export class Api {
   }
 
   async deleteCard(cardId) {
+    // siempre invocarlo pasando cardId.
     console.log(`Deleting card with ID: ${cardId}`);
     const res = await fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
