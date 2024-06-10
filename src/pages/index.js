@@ -108,15 +108,33 @@ function handleDelete(card) {
 
 function handleLikes(card) {
   const cardId = card.getCardId();
-  console.log(`this is the id`, cardId);
-  apiInstance
-    .addLikes(cardId)
-    .then(() => {
-      card._handleLikeButton();
-    })
-    .catch((err) => {
-      console.error(`Failed to delete card with ID ${cardId}:`, err.message);
-    });
+  const isLiked = card.isLiked();
+
+  if (isLiked) {
+    apiInstance
+      .removeLike(cardId)
+      .then((updatedCard) => {
+        card.updateLikes(updatedCard.likes);
+      })
+      .catch((err) => {
+        console.error(
+          `Failed to remove like from card with ID ${cardId}:`,
+          err.message
+        );
+      });
+  } else {
+    apiInstance
+      .addLikes(cardId)
+      .then((updatedCard) => {
+        card.updateLikes(updatedCard.likes);
+      })
+      .catch((err) => {
+        console.error(
+          `Failed to add like to card with ID ${cardId}:`,
+          err.message
+        );
+      });
+  }
 }
 
 /// card class factory////////
