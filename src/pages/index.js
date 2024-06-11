@@ -108,9 +108,9 @@ function handleDelete(card) {
 
 function handleLikes(card) {
   const cardId = card.getCardId();
-  const isLiked = card.isLiked();
+  const isLike = card.isLike();
 
-  if (isLiked) {
+  if (isLike) {
     apiInstance
       .removeLike(cardId)
       .then((updatedCard) => {

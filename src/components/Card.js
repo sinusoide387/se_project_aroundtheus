@@ -33,9 +33,9 @@ export class Card {
   _renderLikes() {
     const likeButton = this._cardElement.querySelector(".card__like-button");
     if (this.isLike) {
-      likeButton.classList.remove("card__like-button_active");
-    } else {
       likeButton.classList.add("card__like-button_active");
+    } else {
+      likeButton.classList.remove("card__like-button_active");
     }
     // this._cardElement.querySelector(".card__like-count").textContent =
     //   this._likes.length;
@@ -55,7 +55,7 @@ export class Card {
     this._cardElement
       .querySelector(".card__like-button") //aca agregamos el eventlistener al like button
       .addEventListener("click", () => {
-        this._handleLikeButton(); // esto va a llamar al handler para agregar o quitar la clase.
+        this._handleLikeToggle(this); // esto va a llamar al handler para agregar o quitar la clase.
       });
     this._cardElement
       .querySelector(".card__delete-button")
