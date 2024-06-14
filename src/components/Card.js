@@ -1,6 +1,6 @@
 export class Card {
   constructor(
-    { name, link, _id, likes },
+    { name, link, _id, isLiked },
     cardSelector,
     handleImageClick,
     handleDelete,
@@ -13,32 +13,30 @@ export class Card {
     this._handleDelete = handleDelete;
     this._handleLikeToggle = handleLikeToggle;
     this._id = _id;
-    this._likes = likes;
+    this._isLiked = isLiked;
   }
 
   getCardId() {
     return this._id;
   }
 
-  isLike() {
-    return this._likes.some((like) => {
-      like._id === this._id;
-    });
+  getLikedState() {
+    return this._isLiked;
   }
   updateLikes(newLikes) {
-    this._likes = newLikes;
+    this._isLiked = newLikes;
     this._renderLikes();
   }
 
   _renderLikes() {
     const likeButton = this._cardElement.querySelector(".card__like-button");
-    if (this.isLike) {
+    if (this._isLiked) {
       likeButton.classList.add("card__like-button_active");
     } else {
       likeButton.classList.remove("card__like-button_active");
     }
     // this._cardElement.querySelector(".card__like-count").textContent =
-    //   this._likes.length;
+    //   this._isLiked.length;
   }
 
   ///////event listeners///////

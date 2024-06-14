@@ -107,14 +107,15 @@ function handleDelete(card) {
 }
 
 function handleLikes(card) {
-  const cardId = card.getCardId();
-  const isLike = card.isLike();
+  const cardId = card.getCardId(); //card._id
+  const isLiked = card.getLikedState(); //card._isLiked
 
-  if (isLike) {
+  if (isLiked) {
     apiInstance
       .removeLike(cardId)
       .then((updatedCard) => {
-        card.updateLikes(updatedCard.likes);
+      
+        card.updateLikes(updatedCard.isLiked);
       })
       .catch((err) => {
         console.error(
@@ -126,7 +127,8 @@ function handleLikes(card) {
     apiInstance
       .addLikes(cardId)
       .then((updatedCard) => {
-        card.updateLikes(updatedCard.likes);
+
+        card.updateLikes(updatedCard.isLiked);
       })
       .catch((err) => {
         console.error(
@@ -145,7 +147,7 @@ function getCardView(cardData) {
     "#card-template",
     handleImageClick,
     () => handleDelete(card),
-    () => handleLikes(card)
+    handleLikes
   );
 
   return card.getView(); // aca le doy a la funcion con todos los datos, template y handler para que los use en otra funcion

@@ -95,13 +95,15 @@ export class Api {
         authorization: this._headers,
       },
     }).then((res) =>
-      res.ok ? res.json : Promise.reject(`Error: ${res.status}`)
+      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );
   }
   async removeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: this._headers,
+      },
     }).then((res) =>
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );
