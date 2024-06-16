@@ -164,7 +164,12 @@ const deletePopup = new PopupDelete(
 
 deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas las clases
 
-///submit functions  (add and edit)  ///
+///submit functions  (add, edit and profile picture)  ///
+
+function handleSubmitPicture(inputValues) {
+  const input = document.querySelector("#profile__picture-input");
+  inputValues = input.value;
+}
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // Extract name and link from input values
@@ -264,7 +269,8 @@ popupImage.setEventListeners(); //activo los eventListeners de la clase usando l
 
 /// testing popup profile picture ///
 
-const popupPicture = document.querySelector("#profile__picture-modal");
-console.log(popupPicture);
+// const popupPicture = document.querySelector("#profile__picture-modal");
 
-popupPicture.classList.add("modal_opened");
+// popupPicture.classList.add("modal_opened");
+
+/// PopupProfile class ///
