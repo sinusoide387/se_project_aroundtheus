@@ -114,7 +114,6 @@ function handleLikes(card) {
     apiInstance
       .removeLike(cardId)
       .then((updatedCard) => {
-      
         card.updateLikes(updatedCard.isLiked);
       })
       .catch((err) => {
@@ -127,7 +126,6 @@ function handleLikes(card) {
     apiInstance
       .addLikes(cardId)
       .then((updatedCard) => {
-
         card.updateLikes(updatedCard.isLiked);
       })
       .catch((err) => {
@@ -263,3 +261,10 @@ function handleImageClick(cardData) {
 }
 
 popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
+
+/// testing popup profile picture ///
+
+const popupPicture = document.querySelector("#profile__picture-modal");
+console.log(popupPicture);
+
+popupPicture.classList.add("modal_opened");

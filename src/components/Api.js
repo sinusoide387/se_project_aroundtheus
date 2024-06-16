@@ -108,4 +108,17 @@ export class Api {
       res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );
   }
+  // async updateProfile() {
+  //   return fetch(`${this._baseUrl}/users/me/avatar`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       authorization: this._headers,
+  //     },
+  //     body: JSON.stringify({
+  //      avatar:,
+  //     }),
+  //   }).then((res) =>
+  //     res.ok ? res.json() : Promise.reject(`Error:${res.status}`)
+  //   );
+  // }
 }

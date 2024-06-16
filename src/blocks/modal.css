@@ -44,6 +44,17 @@
   border-radius: 10px;
   box-sizing: border-box; /*esto incluye padding y margin en el tamano total del elemento*/
 }
+.modal__container-picture {
+  color: black;
+  background-color: #fff;
+  position: relative;
+  width: 394px;
+  min-height: 236px;
+  padding: 36px;
+
+  /* margin: auto; */
+  border-radius: 10px;
+}
 .modal__button-delete {
   width: 100%;
   min-height: 50.15px;
