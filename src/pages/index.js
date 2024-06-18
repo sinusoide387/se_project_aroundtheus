@@ -7,6 +7,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupDelete } from "../components/PopupDelete.js";
+import { PopupProfile } from "../components/PopupProfile.js";
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 
@@ -166,9 +167,10 @@ deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas 
 
 ///submit functions  (add, edit and profile picture)  ///
 
-function handleSubmitPicture(inputValues) {
+function handleSubmitPicture() {
   const input = document.querySelector("#profile__picture-input");
   inputValues = input.value;
+  return inputValues;
 }
 
 function handleAddFormSubmit(inputValues) {
@@ -267,10 +269,22 @@ function handleImageClick(cardData) {
 
 popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
 
-/// testing popup profile picture ///
+///  profile picture popup ///
+
+const popupProfile = new PopupProfile(
+  { popupSelector: "#profile__picture-modal" },
+  handleSubmitPicture
+);
+
+popupProfile.setEventListeners();
 
 // const popupPicture = document.querySelector("#profile__picture-modal");
 
+const popupPictureButton = document.querySelector(".profile__image-button");
+
+popupPictureButton.addEventListener("click", () => {
+  popupProfile.open();
+});
 // popupPicture.classList.add("modal_opened");
 
 /// PopupProfile class ///

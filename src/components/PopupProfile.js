@@ -1,6 +1,6 @@
 import Popup from "./Popup";
 
-export class ProfilePicture extends Popup {
+export class PopupProfile extends Popup {
   constructor({ popupSelector }, handleSubmitPicture) {
     super({ popupSelector });
     this._popupPicture = document.querySelector("#profile__picture-modal");
