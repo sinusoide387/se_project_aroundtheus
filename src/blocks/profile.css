@@ -11,6 +11,13 @@
     "description description";
   grid-template-columns: minmax(auto, 391px) auto;
 }
+
+/* cree un contenedor y lo pongo en posicion relativa para que el z-index funcione */
+
+.profile__image__container {
+  position: relative;
+}
+
 .profile__image {
   width: 120px;
   min-height: 120px;
@@ -19,12 +26,32 @@
   margin-right: 24px;
   z-index: 0;
 }
-.profile__image-button:hover {
-  position: relative;
-  background-image: url(/src/images/Avatar.svg);
-  background-image: url(/src/images/Vector.svg);
-
+/* el boton de la imagen va en posicion absoluta con respecto al contenedor */
+.profile__image-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer; /* recordar cursor:pointer siempre que sea un boton o algun elemento de interaccion*/
   z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.profile__image__container:hover .profile__image-button {
+  /* combino las clases asi le paso la imagen al boton cuando hago hover*/
+  opacity: 1;
+  background-image: url("/src/images/Vector.svg");
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .profile__title {
