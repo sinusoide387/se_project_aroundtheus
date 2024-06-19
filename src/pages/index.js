@@ -165,13 +165,7 @@ const deletePopup = new PopupDelete(
 
 deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas las clases
 
-///submit functions  (add, edit and profile picture)  ///
-
-function handleSubmitPicture() {
-  const input = document.querySelector("#profile__picture-input");
-  inputValues = input.value;
-  return inputValues;
-}
+///submit functions  (add, edit )  ///
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // Extract name and link from input values
@@ -269,11 +263,21 @@ function handleImageClick(cardData) {
 
 popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
 
+
+/// handle submit function for popupProfile ///
+
+function handleSubmitPicture() {
+  const input = document.querySelector("#profile__picture-input");
+  // inputValues = input.value;
+  const profilePicture = document.querySelector(".profile__image");
+  profilePicture.src = input.value;
+}
+
 ///  profile picture popup ///
 
 const popupProfile = new PopupProfile(
   { popupSelector: "#profile__picture-modal" },
-  handleSubmitPicture
+  handleSubmitPicture()
 );
 
 popupProfile.setEventListeners();
