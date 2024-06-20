@@ -263,14 +263,24 @@ function handleImageClick(cardData) {
 
 popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
 
-
 /// handle submit function for popupProfile ///
 
 function handleSubmitPicture() {
   const input = document.querySelector("#profile__picture-input");
   // inputValues = input.value;
   const profilePicture = document.querySelector(".profile__image");
-  profilePicture.src = input.value;
+  const newAvatarUrl = input.value;
+
+  apiInstance
+    .updateProfile(newAvatarUrl)
+    .then((updatedUser) => {
+      console.log(updatedUser);
+
+      profilePicture.src = updatedUser.avatar;
+    })
+    .catch((err) => {
+      console.error("I got an error:", err.message);
+    });
 }
 
 ///  profile picture popup ///
