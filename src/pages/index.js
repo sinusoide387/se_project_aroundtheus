@@ -277,6 +277,7 @@ function handleSubmitPicture() {
       console.log(updatedUser);
 
       profilePicture.src = updatedUser.avatar;
+      debugger;
     })
     .catch((err) => {
       console.error("I got an error:", err.message);
@@ -287,7 +288,7 @@ function handleSubmitPicture() {
 
 const popupProfile = new PopupProfile(
   { popupSelector: "#profile__picture-modal" },
-  handleSubmitPicture()
+  handleSubmitPicture
 );
 
 popupProfile.setEventListeners();

@@ -14,7 +14,7 @@ export class PopupProfile extends Popup {
       this._saveButton.addEventListener("click", (event) => {
         event.preventDefault;
         console.log("click");
-        this._handleSubmitPicture;
+        this._handleSubmitPicture();
         super.close();
       });
     } else {
