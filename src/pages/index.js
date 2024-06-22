@@ -269,7 +269,7 @@ function handleSubmitPicture() {
   const input = document.querySelector("#profile__picture-input");
   // inputValues = input.value;
   const profilePicture = document.querySelector(".profile__image");
-  const newAvatarUrl = input.value;
+  const newAvatarUrl = input.value.trim();
 
   apiInstance
     .updateProfile(newAvatarUrl)

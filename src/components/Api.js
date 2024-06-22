@@ -109,7 +109,7 @@ export class Api {
     );
   }
   async updateProfile(avatarUrl) {
-    return fetch(`${this._baseUrl}/users/me/${avatarUrl}`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._headers,
