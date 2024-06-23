@@ -285,14 +285,14 @@ function handleSubmitPicture() {
 
 ///  profile picture popup ///
 
-const popupProfile = new PopupWithForm(
-  { popupSelector: "#profile__picture-modal" },
-  handleSubmitPicture
+const popupProfile = new PopupWithForm( // uso la clase PopupWithForm con los eventlisteners y la coneccion que tiene con la Popup class
+  { popupSelector: "#profile__picture-modal" }, // pero le asigno como nuevo selector el nuevo popup que acepta links
+  handleSubmitPicture // y la nueva funcion para que llame la API class y agrege el valor del input cuando haga submit
 );
 
-popupProfile.setEventListeners();
+popupProfile.setEventListeners(); // los eventListeners son ahora los de PopupWithForm
 
-// const popupPicture = document.querySelector("#profile__picture-modal");
+
 
 const popupPictureButton = document.querySelector(".profile__image-button");
 

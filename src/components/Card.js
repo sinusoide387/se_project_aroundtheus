@@ -35,8 +35,6 @@ export class Card {
     } else {
       likeButton.classList.remove("card__like-button_active");
     }
-    // this._cardElement.querySelector(".card__like-count").textContent =
-    //   this._isLiked.length;
   }
 
   ///////event listeners///////
