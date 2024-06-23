@@ -273,11 +273,10 @@ function handleSubmitPicture() {
 
   apiInstance
     .updateProfile(newAvatarUrl)
-    .then((updatedUser) => {
-      console.log(updatedUser);
+    .then((newAvatarUrl) => {
+      console.log(newAvatarUrl);
 
-      profilePicture.src = updatedUser.avatar;
-      debugger;
+      profilePicture.src = newAvatarUrl.avatar;
     })
     .catch((err) => {
       console.error("I got an error:", err.message);
@@ -286,7 +285,7 @@ function handleSubmitPicture() {
 
 ///  profile picture popup ///
 
-const popupProfile = new PopupProfile(
+const popupProfile = new PopupWithForm(
   { popupSelector: "#profile__picture-modal" },
   handleSubmitPicture
 );

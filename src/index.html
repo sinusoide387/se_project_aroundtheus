@@ -169,18 +169,24 @@
       <div class="modal__container-picture">
         <button class="modal__close" id="profile__close-modal"></button>
         <p class="modal__heading">Change profile picture</p>
-        <input
-          class="modal__input modal__input-type_url"
-          id="profile__picture-input"
-          placeholder="image URL"
-          type="url"
-          name="link"
-          required
-        />
+        <form class="modal__form">
+          <input
+            class="modal__input modal__input-type_url"
+            id="profile__picture-input"
+            placeholder="image URL"
+            type="url"
+            name="link"
+            required
+          />
 
-        <button type="patch" id="update__picture-button" class="modal__button">
-          Save
-        </button>
+          <button
+            type="patch"
+            id="update__picture-button"
+            class="modal__button"
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
 
