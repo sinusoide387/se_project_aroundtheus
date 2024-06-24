@@ -32,6 +32,7 @@ export class Api {
         authorization: this._headers,
       },
     });
+
     if (res.ok) {
       return res.json();
     }

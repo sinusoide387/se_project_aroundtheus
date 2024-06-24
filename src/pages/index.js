@@ -165,7 +165,56 @@ const deletePopup = new PopupDelete(
 
 deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas las clases
 
-///submit functions  (add, edit )  ///
+////////////////////////////////validation classes////////////////////////////////////////////////
+
+const editFormValidation = new FormValidation(settings, profileEditForm);
+editFormValidation.enableValidation();
+
+const addFormValidation = new FormValidation(settings, profileAddForm);
+addFormValidation.enableValidation();
+
+//// Section class/////
+
+const cardSection = new Section({ renderer: getCardView }, ".cards__list");
+
+/// UserInfo class ///
+
+const newUserInfo = new UserInfo({
+  // llamo a la clase para usar los metodos
+  nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
+  jobSelector: "#profile__description",
+});
+
+///  profile picture popup ///
+
+const popupProfile = new PopupWithForm( // uso la clase PopupWithForm con los eventlisteners y la coneccion que tiene con la Popup class
+  { popupSelector: "#profile__picture-modal" }, // pero le asigno como nuevo selector el nuevo popup que acepta links
+  handleSubmitPicture // y la nueva funcion para que llame la API class y agrege el valor del input cuando haga submit
+);
+
+popupProfile.setEventListeners(); // los eventListeners son ahora los de PopupWithForm
+
+//// PopupWithForm class /////
+
+const editProfilePopup = new PopupWithForm(
+  { popupSelector: "#profile__edit-modal" },
+  handleEditSubmit
+);
+
+editProfilePopup.setEventListeners();
+
+const addPlacePopup = new PopupWithForm(
+  { popupSelector: "#profile__add-form" },
+  handleAddFormSubmit
+);
+
+addPlacePopup.setEventListeners();
+
+//// PopupWithImage class ////
+
+const popupImage = new PopupWithImage("#preview__image_modal"); //llamo a la clase (insatntiate)
+
+///submit functions  (add, edit, profilepicture )  ///
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // Extract name and link from input values
@@ -188,7 +237,7 @@ function handleAddFormSubmit(inputValues) {
 
 function handleEditSubmit(inputValues) {
   // una forma de resumir multiples parametros en uno solo
-  const { title, description } = inputValues; // topa los valores del "name" property en los inputs
+  const { title, description } = inputValues; // toma los valores del "name" property en los inputs
 
   newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
   apiInstance
@@ -200,70 +249,6 @@ function handleEditSubmit(inputValues) {
     .catch((err) => console.error("I got an error:", err.message));
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 }
-
-const editFormValidation = new FormValidation(settings, profileEditForm);
-editFormValidation.enableValidation();
-
-const addFormValidation = new FormValidation(settings, profileAddForm);
-addFormValidation.enableValidation();
-
-//// Section class/////
-
-const cardSection = new Section({ renderer: getCardView }, ".cards__list");
-
-//// Popups in general /////
-
-const addPlaceButton = document.querySelector("#profile__add-button");
-addPlaceButton.addEventListener("click", () => {
-  addPlacePopup.open(); //llamo el metodo open () cuando hago click en el boton. busco el boton y agrego eventlistener
-});
-
-//// PopupWithForm class /////
-
-const editProfilePopup = new PopupWithForm(
-  { popupSelector: "#profile__edit-modal" },
-  handleEditSubmit
-);
-
-editProfilePopup.setEventListeners();
-
-/// UserInfo class ///
-
-const newUserInfo = new UserInfo({
-  // llamo a la clase para usar los metodos
-  nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
-  jobSelector: "#profile__description",
-});
-
-const editProfileButton = document.querySelector("#profile__edit-button");
-editProfileButton.addEventListener("click", () => {
-  const currentUser = newUserInfo.getUserInfo(); //usar la funcion que obtiene la info  y ponerla en una constante
-
-  profileTitleInput.value = currentUser.name.trim(); // usar el selector de los inputs, y ponerle la constante mas el parametro que se uso en la funcion de la clase
-  profileDescriptionInput.value = currentUser.job.trim();
-
-  editProfilePopup.open();
-});
-
-const addPlacePopup = new PopupWithForm(
-  { popupSelector: "#profile__add-form" },
-  handleAddFormSubmit
-);
-
-addPlacePopup.setEventListeners();
-
-//// PopupWithImage class ////
-
-const popupImage = new PopupWithImage("#preview__image_modal"); //llamo a la clase (insatntiate)
-
-function handleImageClick(cardData) {
-  // genero una funcion para poder usar un metodo de la clase en otros lugares (ejemplo:cuando creo nueva carta})
-  popupImage.open(cardData);
-}
-
-popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
-
-/// handle submit function for popupProfile ///
 
 function handleSubmitPicture() {
   const input = document.querySelector("#profile__picture-input");
@@ -283,22 +268,34 @@ function handleSubmitPicture() {
     });
 }
 
-///  profile picture popup ///
+//// Popups in general /////
 
-const popupProfile = new PopupWithForm( // uso la clase PopupWithForm con los eventlisteners y la coneccion que tiene con la Popup class
-  { popupSelector: "#profile__picture-modal" }, // pero le asigno como nuevo selector el nuevo popup que acepta links
-  handleSubmitPicture // y la nueva funcion para que llame la API class y agrege el valor del input cuando haga submit
-);
+const addPlaceButton = document.querySelector("#profile__add-button");
+addPlaceButton.addEventListener("click", () => {
+  addPlacePopup.open(); //llamo el metodo open () cuando hago click en el boton. busco el boton y agrego eventlistener
+});
 
-popupProfile.setEventListeners(); // los eventListeners son ahora los de PopupWithForm
+const editProfileButton = document.querySelector("#profile__edit-button");
+editProfileButton.addEventListener("click", () => {
+  const currentUser = newUserInfo.getUserInfo(); //usar la funcion que obtiene la info  y ponerla en una constante
 
+  profileTitleInput.value = currentUser.name.trim(); // usar el selector de los inputs, y ponerle la constante mas el parametro que se uso en la funcion de la clase
+  profileDescriptionInput.value = currentUser.job.trim();
 
+  editProfilePopup.open();
+});
+
+function handleImageClick(cardData) {
+  // genero una funcion para poder usar un metodo de la clase en otros lugares (ejemplo:cuando creo nueva carta})
+  popupImage.open(cardData);
+}
+
+popupImage.setEventListeners(); //activo los eventListeners de la clase usando la constante
+
+/// handle submit function for popupProfile ///
 
 const popupPictureButton = document.querySelector(".profile__image-button");
 
 popupPictureButton.addEventListener("click", () => {
   popupProfile.open();
 });
-// popupPicture.classList.add("modal_opened");
-
-/// PopupProfile class ///
