@@ -11,7 +11,7 @@ export class UserInfo {
     };
   }
 
-  setUserInfo(name, job, avatar) {
+  setUserInfo(name, job) {
     //funcion que hace display de los parametros que paso. usar estos en la intiantiation
     if (!this._name || !this._job) {
       console.error("Name or job element is not found.");

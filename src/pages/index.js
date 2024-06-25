@@ -86,6 +86,7 @@ apiInstance // llamo al metodo de la api class para actualizar el usuario
   .editProfile()
   .then((userUpdate) => {
     console.log(userUpdate);
+    newUserInfo.setUserInfo(userUpdate.name, userUpdate.about);
   })
   .catch((err) => console.log.error("I got an error:", err.message));
 
@@ -241,11 +242,12 @@ function handleEditSubmit(inputValues) {
 
   newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
   apiInstance
-    .getUserInfo() // metodo de api para obtener el user
+    .editProfile() // metodo de api para obtener el user
     .then((userInfo) => {
       console.log(userInfo);
       newUserInfo.setUserInfo(title, description);
     })
+
     .catch((err) => console.error("I got an error:", err.message));
   editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 }
