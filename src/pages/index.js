@@ -36,6 +36,8 @@ const profileAddModal = document.querySelector("#profile__add-form");
 
 const profileAddForm = document.querySelector("#add-card-form");
 
+const profilePictureForm = document.querySelector("#profile__picture__form");
+
 const profilePlaceInput = document.querySelector(".modal__input_type_title");
 
 const profilePlaceInputUrl = document.querySelector(".modal__input-type_url");
@@ -173,6 +175,12 @@ editFormValidation.enableValidation();
 
 const addFormValidation = new FormValidation(settings, profileAddForm);
 addFormValidation.enableValidation();
+
+// const profilePictureValidation = new FormValidation(
+//   settings,
+//   profilePictureForm
+// );
+// profilePictureValidation.enableValidation();
 
 //// Section class/////
 

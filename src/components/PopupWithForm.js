@@ -6,7 +6,8 @@ export class PopupWithForm extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
 
     this._formInputs = this._popupElement.querySelectorAll(".modal__input");
-
+    this._submitButton = this._popupForm.querySelector(".modal__button"); // recordar que cada vez que agrego un elemento, tengo que definirlo en el constructor de la clase
+    this._originalButtonText = this._submitButton.textContent; // guardo aca el texto original
     this._handleFormSubmit = handleFormSubmit;
   }
 
@@ -29,8 +30,8 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      this._submitButton.textContent = "Saving.."; // cambia el texto del botton, pero recordar que ya guarde en el constructor el texto original ("Save")
       this._handleFormSubmit(this._getInputValues());
-      this._popupForm.textContent = "Saving...";
       super.close();
     });
   }
@@ -38,6 +39,7 @@ export class PopupWithForm extends Popup {
   close() {
     this._popupForm.reset();
     super.close(); // super se refiere al padre, osea el method close del padre
+    this._submitButton.textContent = this._originalButtonText; // lo vuelve al texto original cuando cierra el popUp
   }
 }
 
