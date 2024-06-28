@@ -25,14 +25,16 @@ export class PopupWithForm extends Popup {
   }
 
   // _getInputValue should be called to get the object.
+  setButtonText(text) {
+    this._submitButton.textContent = text;
+  }
 
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this._submitButton.textContent = "Saving.."; // cambia el texto del botton, pero recordar que ya guarde en el constructor el texto original ("Save")
+      // cambia el texto del botton, pero recordar que ya guarde en el constructor el texto original ("Save")
       this._handleFormSubmit(this._getInputValues());
-      super.close();
     });
   }
 

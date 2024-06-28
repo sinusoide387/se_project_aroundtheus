@@ -38,7 +38,7 @@ export class Api {
     }
     throw new Error(`HTTP error! ${res.status}`);
   }
-  async editProfile() {
+  async editProfile(name, about) {
     const res = await fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -46,8 +46,8 @@ export class Api {
         "Content-Type": this._contentType,
       },
       body: JSON.stringify({
-        name: "Franco Mateo Turco",
-        about: "Software Engineer",
+        name: name,
+        about: about,
       }),
     });
     if (res.ok) {

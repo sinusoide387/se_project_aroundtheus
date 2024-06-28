@@ -85,7 +85,7 @@ apiInstance
   .catch((err) => console.error("I got an error:", err.message));
 
 apiInstance // llamo al metodo de la api class para actualizar el usuario
-  .editProfile()
+  .getUserInfo()
   .then((userUpdate) => {
     console.log(userUpdate);
     newUserInfo.setUserInfo(userUpdate.name, userUpdate.about);
@@ -176,12 +176,6 @@ editFormValidation.enableValidation();
 const addFormValidation = new FormValidation(settings, profileAddForm);
 addFormValidation.enableValidation();
 
-// const profilePictureValidation = new FormValidation(
-//   settings,
-//   profilePictureForm
-// );
-// profilePictureValidation.enableValidation();
-
 //// Section class/////
 
 const cardSection = new Section({ renderer: getCardView }, ".cards__list");
@@ -227,7 +221,7 @@ const popupImage = new PopupWithImage("#preview__image_modal"); //llamo a la cla
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // Extract name and link from input values
-
+  addPlacePopup.setButtonText("Saving..");
   apiInstance
     .addNewCard(name, link) // toma el name y el link
     .then((newCard) => {
@@ -241,23 +235,30 @@ function handleAddFormSubmit(inputValues) {
     })
     .catch((err) => {
       console.log("I got an error:", err.message);
+    })
+    .finally(() => {
+      addPlacePopup.setButtonText("Save");
     });
 }
 
 function handleEditSubmit(inputValues) {
   // una forma de resumir multiples parametros en uno solo
   const { title, description } = inputValues; // toma los valores del "name" property en los inputs
-
-  newUserInfo.setUserInfo(title, description); // llamo el metodo usando el nombre de la constante que use para intantiate la clase
+  editProfilePopup.setButtonText("Saving..");
+  // llamo el metodo usando el nombre de la constante que use para intantiate la clase
   apiInstance
-    .editProfile() // metodo de api para obtener el user
+    .editProfile(title, description) // metodo de api para obtener el user
     .then((userInfo) => {
       console.log(userInfo);
       newUserInfo.setUserInfo(title, description);
+      editProfilePopup.close();
     })
+    .catch((err) => console.error("I got an error:", err.message))
+    .finally(() => {
+      editProfilePopup.setButtonText("Save");
+    });
 
-    .catch((err) => console.error("I got an error:", err.message));
-  editProfilePopup.close(); // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
+  // llamo al close() usando la constante con la cual invoque la clase, imp: lo puedo hacer en cualquier lugar que requiera la funcion
 }
 
 function handleSubmitPicture() {
@@ -265,17 +266,21 @@ function handleSubmitPicture() {
   // inputValues = input.value;
   const profilePicture = document.querySelector(".profile__image");
   const newAvatarUrl = input.value.trim();
-
+  popupProfile.setButtonText("Saving..");
   apiInstance
     .updateProfile(newAvatarUrl)
     .then((newAvatarUrl) => {
       console.log(newAvatarUrl);
-
       profilePicture.src = newAvatarUrl.avatar;
+      popupProfile.close();
     })
     .catch((err) => {
       console.error("I got an error:", err.message);
+    })
+    .finally(() => {
+      popupProfile.setButtonText("Save");
     });
+
 }
 
 //// Popups in general /////
