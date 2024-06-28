@@ -26,6 +26,7 @@ export class PopupWithForm extends Popup {
 
   // _getInputValue should be called to get the object.
   setButtonText(text) {
+    // esta funcion cambia el texto del botton para submmit, puedo poner el texto que quiera como parametro
     this._submitButton.textContent = text;
   }
 
@@ -33,7 +34,7 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      // cambia el texto del botton, pero recordar que ya guarde en el constructor el texto original ("Save")
+
       this._handleFormSubmit(this._getInputValues());
     });
   }
@@ -44,9 +45,3 @@ export class PopupWithForm extends Popup {
     this._submitButton.textContent = this._originalButtonText; // lo vuelve al texto original cuando cierra el popUp
   }
 }
-
-//index.js (pretendo que estoy en index.js, esto es como yo instantiate una clase en el index.js).
-
-// imp entre parentesis van los valores que paso a los parametros de las clases.
-// al agregar super.close al hijo, se va a reiniciar y tambien cerrar los popups
-// aplicando la funcionalidad de cerrado al padre pero  agregandola con super al hijo.

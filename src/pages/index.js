@@ -7,7 +7,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import "../pages/index.css";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupDelete } from "../components/PopupDelete.js";
-import { PopupProfile } from "../components/PopupProfile.js";
 
 const profileEditButton = document.querySelector("#profile__edit-button");
 
@@ -221,7 +220,7 @@ const popupImage = new PopupWithImage("#preview__image_modal"); //llamo a la cla
 
 function handleAddFormSubmit(inputValues) {
   const { name, link } = inputValues; // Extract name and link from input values
-  addPlacePopup.setButtonText("Saving..");
+  addPlacePopup.setButtonText("Saving.."); // cree la funcion con el popUpWithForm y pase text como parametro
   apiInstance
     .addNewCard(name, link) // toma el name y el link
     .then((newCard) => {
@@ -280,7 +279,6 @@ function handleSubmitPicture() {
     .finally(() => {
       popupProfile.setButtonText("Save");
     });
-
 }
 
 //// Popups in general /////
