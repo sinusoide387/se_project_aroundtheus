@@ -63,6 +63,9 @@
   border-radius: 2px;
   margin-top: auto;
 }
+.modal__button-delete:hover{
+  cursor: pointer;
+}
 
 .modal__form {
   display: flex;

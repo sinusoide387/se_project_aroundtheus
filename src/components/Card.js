@@ -70,7 +70,8 @@ export class Card {
     deletePopup.open();
   }
 
-  _handleDeleteButton() {
+  deleteCard() {
+    // _handleDeleteButton
     //funcion que hace el borrado
     this._cardElement.remove();
     this._cardElement = null;

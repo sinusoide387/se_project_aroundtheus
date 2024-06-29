@@ -74,22 +74,34 @@ const apiInstance = new Api({
   contentType: "application/json",
 });
 
-apiInstance
-  .getInitialCards() // metodo de api class para obtener las cards
-  .then((cards) => {
-    // puse cards, pero tambien se usa "res"de respuesta
+Promise.all([apiInstance.getInitialCards(), apiInstance.getUserInfo()])
+  .then(([cards, userUpdate]) => {
     console.log(cards);
     cardSection.renderItems(cards);
-  })
-  .catch((err) => console.error("I got an error:", err.message));
-
-apiInstance // llamo al metodo de la api class para actualizar el usuario
-  .getUserInfo()
-  .then((userUpdate) => {
     console.log(userUpdate);
     newUserInfo.setUserInfo(userUpdate.name, userUpdate.about);
+    newUserInfo.setAvatar(userUpdate.avatar);
   })
   .catch((err) => console.log.error("I got an error:", err.message));
+
+// apiInstance
+//   .getInitialCards() // metodo de api class para obtener las cards
+//   .then((cards) => {
+//     // puse cards, pero tambien se usa "res"de respuesta
+//     console.log(cards);
+//     cardSection.renderItems(cards);
+//   })
+
+//   .catch((err) => console.error("I got an error:", err.message));
+
+// apiInstance // llamo al metodo de la api class para actualizar el usuario
+//   .getUserInfo()
+//   .then((userUpdate) => {
+//     console.log(userUpdate);
+//     newUserInfo.setUserInfo(userUpdate.name, userUpdate.about);
+//     newUserInfo.setAvatar(userUpdate.avatar);
+//   })
+//   .catch((err) => console.log.error("I got an error:", err.message));
 
 function handleDelete(card) {
   // funcion que integra el popup con el api request class, y la uso en la card class
@@ -97,14 +109,18 @@ function handleDelete(card) {
   deletePopup.setSubmitAction(() => {
     // llamo a la funcion, esta funcion actua como conexion entre popup, el request y la card en si
     const cardId = card.getCardId();
+    deletePopup.setButtonText("Deleting..");
     apiInstance
       .deleteCard(cardId) // primero lo borro con el request
       .then(() => {
-        card._handleDeleteButton(); //luego la respuesta hace que active la funcion para borrarla fisicamente
+        card.deleteCard(); //luego la respuesta hace que active la funcion para borrarla fisicamente
         deletePopup.close(); // cierra el popup luego de borrar la card
       })
       .catch((err) => {
         console.error(`Failed to delete card with ID ${cardId}:`, err.message);
+      })
+      .finally(() => {
+        deletePopup.setButtonText("Yes");
       });
   });
 }
@@ -155,14 +171,17 @@ function getCardView(cardData) {
 }
 
 const deletePopup = new PopupDelete(
-  { popupSelector: "#delete__card-modal" },
-  (cardId) => {
-    // esto actua toma el lugar del "handleDelete" de la PopupDelete class
-    apiInstance.deleteCard(cardId).then(() => {
-      //aca usa el request del servidor para borrar la carta pasando el _id
-      console.log("message");
-    });
-  }
+  { popupSelector: "#delete__card-modal" }
+  // (cardId) => {
+  //   // esto actua toma el lugar del "handleDelete" de la PopupDelete class
+  //   apiInstance
+  //     .deleteCard(cardId)
+  //     .then(() => {
+  //       //aca usa el request del servidor para borrar la carta pasando el _id
+  //       console.log("message");
+  //     })
+  //     .catch((err) => console.error(`Error to delete ${cardId}`, err.message));
+  // }
 );
 
 deletePopup.setEventListeners(); //siempre llamar los eventListeners para todas las clases
@@ -185,7 +204,13 @@ const newUserInfo = new UserInfo({
   // llamo a la clase para usar los metodos
   nameSelector: "#profile__title", // los selectores que use, nose porque no llevan -input al final.
   jobSelector: "#profile__description",
+  avatarSelector: ".profile__image",
 });
+
+newUserInfo.setUserInfo({ name: "Franco", job: "Web Developer" });
+newUserInfo.setAvatar(
+  "https://th.bing.com/th/id/OIP.-7M0KUhS8s1RLxTruVot-AHaHa?rs=1&pid=ImgDetMain"
+);
 
 ///  profile picture popup ///
 
@@ -250,6 +275,7 @@ function handleEditSubmit(inputValues) {
     .then((userInfo) => {
       console.log(userInfo);
       newUserInfo.setUserInfo(title, description);
+
       editProfilePopup.close();
     })
     .catch((err) => console.error("I got an error:", err.message))
@@ -262,15 +288,16 @@ function handleEditSubmit(inputValues) {
 
 function handleSubmitPicture() {
   const input = document.querySelector("#profile__picture-input");
-  // inputValues = input.value;
-  const profilePicture = document.querySelector(".profile__image");
+
+  // const profilePicture = document.querySelector(".profile__image");
   const newAvatarUrl = input.value.trim();
   popupProfile.setButtonText("Saving..");
   apiInstance
     .updateProfile(newAvatarUrl)
-    .then((newAvatarUrl) => {
-      console.log(newAvatarUrl);
-      profilePicture.src = newAvatarUrl.avatar;
+    .then((response) => {
+      console.log(response);
+      newUserInfo.setAvatar(response.avatar);
+      // profilePicture.src = newAvatarUrl.avatar;
       popupProfile.close();
     })
     .catch((err) => {

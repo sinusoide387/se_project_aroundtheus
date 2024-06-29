@@ -18,7 +18,7 @@ export class Api {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
 
-      return await res.json(); // si pasa el error, devuelve la respuesta como JASON (objeto)
+      return await res.json(); // si pasa el error, devuelve la respuesta como JSON (objeto)
     } catch (err) {
       // y sino devuelve un error
       console.error("I got an error:", err.message);
