@@ -5,25 +5,22 @@ export class Api {
     this._contentType = contentType;
   }
 
-  async getInitialCards() {
-    try {
-      const res = await fetch(`${this._baseUrl}/cards`, {
-        method: "GET",
-        headers: {
-          authorization: this._headers,
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
-      return await res.json(); // si pasa el error, devuelve la respuesta como JSON (objeto)
-    } catch (err) {
-      // y sino devuelve un error
-      console.error("I got an error:", err.message);
-      throw err;
+  _processResponse = (res) => {
+    if (res.ok) {
+      return res.json();
     }
+    return Promise.reject(`Error: ${res.status}`);
+  };
+
+  async getInitialCards() {
+    const res = await fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
+      headers: {
+        authorization: this._headers,
+      },
+    });
+
+    return this._processResponse(res); // si pasa el error, devuelve la respuesta como JSON (objeto)
   }
   async getUserInfo() {
     const res = await fetch(`${this._baseUrl}/users/me`, {
@@ -33,10 +30,7 @@ export class Api {
       },
     });
 
-    if (res.ok) {
-      return res.json();
-    }
-    throw new Error(`HTTP error! ${res.status}`);
+    return this._processResponse(res);
   }
   async editProfile(name, about) {
     const res = await fetch(`${this._baseUrl}/users/me`, {
@@ -50,10 +44,7 @@ export class Api {
         about: about,
       }),
     });
-    if (res.ok) {
-      return res.json();
-    }
-    throw new Error(`HTTP error! ${res.status}`);
+    return this._processResponse(res);
   }
   async addNewCard(name, link) {
     const res = await fetch(`${this._baseUrl}/cards`, {
@@ -67,10 +58,7 @@ export class Api {
         link: link,
       }),
     });
-    if (res.ok) {
-      return res.json();
-    }
-    throw new Error(`HTTP error! ${res.status}`);
+    return this._processResponse(res);
   }
 
   async deleteCard(cardId) {

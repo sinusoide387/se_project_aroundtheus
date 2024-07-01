@@ -66,10 +66,6 @@ export class Card {
       .classList.toggle("card__like-button_active");
   }
 
-  _openDeletePopup() {
-    deletePopup.open();
-  }
-
   deleteCard() {
     // _handleDeleteButton
     //funcion que hace el borrado
