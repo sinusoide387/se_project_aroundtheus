@@ -70,12 +70,12 @@ export class Api {
         authorization: this._headers,
       },
     });
-    if (!res.ok) {
-      const errorMessage = await res.text();
-      throw new Error(
-        `Failed to delete card with id ${cardId}: ${res.status} ${res.statusText} - ${errorMessage}`
-      );
-    }
+    // // if (!res.ok) {
+    // //   const errorMessage = await res.text();
+    // //   // throw new Error(
+    // //   //   `Failed to delete card with id ${cardId}: ${res.status} ${res.statusText} - ${errorMessage}`
+    // //   // );
+    // }
   }
   async addLikes(_id) {
     return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
