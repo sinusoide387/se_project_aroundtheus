@@ -42,6 +42,5 @@ export class PopupWithForm extends Popup {
   close() {
     this._popupForm.reset();
     super.close(); // super se refiere al padre, osea el method close del padre
-    this._submitButton.textContent = this._originalButtonText; // lo vuelve al texto original cuando cierra el popUp
   }
 }
