@@ -32,6 +32,41 @@
   /* margin: auto; */
   border-radius: 10px;
 }
+.modal__container-delete {
+  color: black;
+  background-color: #fff;
+  position: relative;
+  width: 430px;
+  min-height: 181px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-sizing: border-box; /*esto incluye padding y margin en el tamano total del elemento*/
+}
+.modal__container-picture {
+  color: black;
+  background-color: #fff;
+  position: relative;
+  width: 394px;
+  min-height: 236px;
+  padding: 36px;
+
+  /* margin: auto; */
+  border-radius: 10px;
+}
+.modal__button-delete {
+  width: 100%;
+  min-height: 50.15px;
+  background: #000;
+  color: #fff;
+  border-radius: 2px;
+  margin-top: auto;
+}
+.modal__button-delete:hover{
+  cursor: pointer;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
