@@ -24,11 +24,14 @@
 
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/Avatar.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__image__container">
+            <img
+              src="<%=require('./images/Avatar.png')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button class="profile__image-button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="profile__title">Jacques Cousteau</h1>
             <button
@@ -144,6 +147,50 @@
         <button class="modal__close" id="modal__image-close-button"></button>
       </div>
     </div>
+
+    <!--delette-modal-->
+    <div class="modal" id="delete__card-modal">
+      <div class="modal__container-delete">
+        <button class="modal__close" id="delete__close-modal"></button>
+        <p class="modal__heading">Are you sure?</p>
+
+        <button
+          type="delete"
+          id="delete__card-button"
+          class="modal__button-delete"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+
+    <!--profile picture-modal -->
+    <div class="modal" id="profile__picture-modal">
+      <div class="modal__container-picture">
+        <button class="modal__close" id="profile__close-modal"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <!--cada vez que hago una nueva form, poner los inputs bajo el nombre modal__form que es el selector de la clase Popup -->
+        <form class="modal__form" id="profile__picture__form">
+          <input
+            class="modal__input modal__input-type_url"
+            id="profile__picture-input"
+            placeholder="image URL"
+            type="url"
+            name="link"
+            required
+          />
+
+          <button
+            type="patch"
+            id="update__picture-button"
+            class="modal__button"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!-- <script src="scripts/index.js" type="module"></script> -->
   </body>
 </html>

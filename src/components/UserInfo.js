@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({ nameSelector, jobSelector }) {
+  constructor({ nameSelector, jobSelector, avatarSelector }) {
     this._name = document.querySelector(nameSelector);
     this._job = document.querySelector(jobSelector);
+    this._avatar = document.querySelector(avatarSelector);
   }
   getUserInfo() {
     // metodo que toma el contenido en texto del selector
@@ -19,5 +20,13 @@ export class UserInfo {
     }
     this._name.textContent = name;
     this._job.textContent = job;
+  }
+
+  setAvatar(avatar) {
+    if (!this._avatar) {
+      console.error("Name or job element is not found.");
+      return;
+    }
+    this._avatar.src = avatar;
   }
 }
