@@ -83,8 +83,9 @@ export class Api {
       headers: {
         authorization: this._headers,
       },
-    }).then((res) =>
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+    }).then(
+      (res) => this._processResponse(res)
+      // res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );
   }
   async removeLike(cardId) {
@@ -93,8 +94,9 @@ export class Api {
       headers: {
         authorization: this._headers,
       },
-    }).then((res) =>
-      res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+    }).then(
+      (res) => this._processResponse(res)
+      // res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
     );
   }
   async updateProfile(avatarUrl) {
@@ -108,8 +110,6 @@ export class Api {
       body: JSON.stringify({
         avatar: avatarUrl,
       }),
-    }).then((res) =>
-      res.ok ? res.json() : Promise.reject(`Error:${res.status}`)
-    );
+    }).then((res) => this._processResponse(res));
   }
 }
